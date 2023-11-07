@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.local
-          key: poetry-1.1.12-0
+          key: poetry-1.7.0-0
 
       # Install Poetry. You could do this manually, or there are several actions that do this.
       # `snok/install-poetry` seems to be minimal yet complete, and really just calls out to
@@ -69,6 +69,13 @@ jobs:
       # they'll be installed and working.
       - run: poetry install --no-interaction
 
-      # And finally run tests. I'm using pytest and all my pytest config is in my `pyproject.toml`
-      # so this line is super-simple. But it could be as complex as you need.
-      - run: poetry run pytest
+      # And finally run tests.
+      # Source: https://donofden.com/blog/2020/05/15/CI-CD-with-GitHub-Actions-with-poetry
+      - name: Run pytest
+        run: PYTHONPATH=finding_the_mole/ poetry run python -m pytest -v --cov=finding_the_mole/ tests/
+
+      - name: Run Coverage
+        run: PYTHONPATH=finding_the_mole/ poetry run python -m coverage report -m;
+
+      - name: Generate XML Report
+        run: PYTHONPATH=finding_the_mole/ poetry run python -m coverage xml
