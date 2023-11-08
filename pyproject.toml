@@ -20,10 +20,6 @@ pytest = "^7.4.3"
 [tool.ruff]
 line-length = 120
 
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "tab"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
