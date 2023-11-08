@@ -21,6 +21,15 @@ pytest = "^7.4.3"
 [tool.ruff]
 line-length = 120
 
+[tool.ruff.lint]
+extend-select = [
+    "D",  # pydocstyle
+    "I",  # isort
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
