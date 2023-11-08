@@ -4,3 +4,15 @@ repos:
     hooks:
       - id: ruff
       - id: ruff-format
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-ast
+      - id: check-case-conflict
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: name-tests-test
+      - id: no-commit-to-branch
+      - id: trailing-whitespace
