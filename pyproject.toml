@@ -8,9 +8,48 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.12"
 
-
 [tool.poetry.group.dev.dependencies]
+pre-commit = "^3.5.0"
+ruff = "^0.1.4"
+pre-commit-hooks = "^4.5.0"
+
+
+[tool.poetry.group.test.dependencies]
 pytest = "^7.4.3"
+
+[tool.ruff]
+line-length = 120
+exclude = ["__init__.py"]
+
+[tool.ruff.lint]
+extend-select = [
+    "ERA",  # eradicate
+    "ANN",  # flake8-annotations
+    "B",  # flake8-bugbear
+    "A",  # flake8-builtins
+    "C4",  # flake8-comprehensions
+    "DTZ",  # flake8-datetimez
+    "ICN",  # flake8-import-conventions
+    "PT",  # flake8-pytest-style
+    "RET",  # flake8-return
+    "SIM",  # flake8-simplify
+    "ARG",  # flake8-unused-arguments
+    "PTH",  # flake8-use-pathlib
+    "I",  # isort
+    "N",  # pep8-naming
+    "D",  # pydocstyle
+    "TRY",  # tryceratops
+]
+ignore = ["D415"]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"tests/*.py" = ["D100", "ANN201"]
+
+[tool.ruff.lint.flake8-comprehensions]
+allow-dict-calls-with-keyword-arguments = true
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [build-system]
 requires = ["poetry-core"]
