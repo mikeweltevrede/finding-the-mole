@@ -30,7 +30,7 @@ showed me that there was definitely merit in the library.
 I started my learning journey by watching YouTube videos. I noticed that many were relatively old, which makes sense
 since `poetry` has been around since February 2018. The one I mainly used is
 [How to Create and Use Virtual Environments in Python With Poetry](https://www.youtube.com/watch?v=0f3moPe_bhk)
-by [ArjanCodes](www.arjancodes.com).
+by [ArjanCodes](https://www.arjancodes.com).
 
 Of course, I had to start with setting up my project with `poetry`. I noticed that it was easier to start locally and
 create my project folder with `poetry new` and then running `git init`, rather than cloning an already initialized
@@ -61,4 +61,4 @@ only annoying thing about this is that you have to either:
 1. Run `poetry add library`, remove the caret, delete the `poetry.lock` file, and rerun `poetry install` to create a new
     lock file.
 
-To be fair, this problem also arises with regular `requirements.txt` files,g so it is not an issue for me.
+To be fair, this problem also arises with regular `requirements.txt` files, so it is not an issue for me.
