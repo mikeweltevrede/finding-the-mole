@@ -12,8 +12,9 @@ I have set the following learning goals for myself so far:
 1. I want to get familiar with using [Poetry](https://python-poetry.org/) for Python projects.
 2. I want to get familiar with the [polars](https://www.pola.rs/) Python library.
 3. I want to get familiar with the [deptry](https://github.com/fpgmaas/deptry) Python library.
-4. I want to get familiar with GitHub Actions to set up a CICD process.
-5. I want to get familiar with using Bayesian modelling in Python (inspiration: [CodeErik](https://www.codeerik.nl/widm-2023-op-zoek-naar-de-mol-met-data-analyse/))
+4. I want to get familiar with [GitHub Actions](https://github.com/features/actions) to set up a CICD process.
+5. I want to get familiar with using Bayesian modelling in Python (inspiration:
+   [CodeErik](https://www.codeerik.nl/widm-2023-op-zoek-naar-de-mol-met-data-analyse/))
 
 I will document my progress on each of these topics, and possibly more topics. I do this because I feel it is important
 to share my learning path for others who might be looking into the same topics. Moreover, it is easy to forget where you
@@ -22,7 +23,9 @@ existing resources.
 
 If you want to help me along this journey, feel free to reach out! :)
 
-## Poetry
+### Poetry library
+[**Poetry website**](https://python-poetry.org/)
+
 I already knew about `poetry` but my interest recently spiked due to two events. Firstly, my team started to hire
 new colleagues and many of them used `poetry`. If many of them did, surely it was worth looking into. Secondly, an
 indirect colleague of mine joined the company and started to build upon the existing CICD templates. Previously, these
@@ -61,6 +64,18 @@ In the end, I saw in the documentation that it was possible to specify
 only annoying thing about this is that you have to either:
 1. Look up the version you want to use and run `poetry add library@version`, or
 2. Run `poetry add library`, remove the caret, delete the `poetry.lock` file, and rerun `poetry install` to create a new
-    lock file.
+   lock file.
 
 To be fair, this problem also arises with regular `requirements.txt` files, so it is not an issue for me.
+
+### Polars library
+[**Polars website**](https://www.pola.rs/)
+
+### Deptry library
+[**Deptry GitHub repo**](https://github.com/fpgmaas/deptry)
+
+### GitHub Actions
+[**GitHub Actions website**](https://github.com/features/actions)
+
+### Bayesian modelling in Python
+**Inspiration: [CodeErik](https://www.codeerik.nl/widm-2023-op-zoek-naar-de-mol-met-data-analyse/)**
