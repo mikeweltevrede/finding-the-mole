@@ -53,7 +53,7 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/ finding_the_mole --doctest-modules --cov finding_the_mole
+          pytest tests/ src --doctest-modules --cov src
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
