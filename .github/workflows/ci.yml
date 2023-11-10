@@ -15,6 +15,7 @@ jobs:
           allowed_prefixes: 'feature,fix,hotfix,test' # All branches should start with the given prefix
           ignore: main # Ignore exactly matching branch names from convention
   test:
+    needs: branch-naming-rules
     runs-on: ubuntu-latest
     steps:
       #----------------------------------------------
