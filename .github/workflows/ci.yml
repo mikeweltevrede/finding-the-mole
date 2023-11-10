@@ -1,5 +1,5 @@
 # Source: https://github.com/snok/install-poetry
-name: test
+name: ci
 
 on: pull_request
 
@@ -53,4 +53,9 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/
+          pytest tests/ finding_the_mole --doctest-modules --cov finding_the_mole
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
