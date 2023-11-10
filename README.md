@@ -1,5 +1,5 @@
 # Finding the Mole
-[![build](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/test.yml/ci.svg)](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci.yml)
+[![build](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci.yml/badge.svg)](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/mikeweltevrede/finding-the-mole/graph/badge.svg?token=9VU08WT5PP)](https://codecov.io/gh/mikeweltevrede/finding-the-mole)
 [![pre-commit](https://results.pre-commit.ci/badge/github/mikeweltevrede/finding-the-mole/main.svg)](https://results.pre-commit.ci/latest/github/mikeweltevrede/finding-the-mole/main)
 
