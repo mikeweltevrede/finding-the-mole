@@ -53,4 +53,12 @@ lock file. I also read [the following comment by Arne on StackOverflow](https://
 > choice, because it occurs quite often that someone's build is not working and the solution is to delete and re-build
 > the lockfile, after which all of us end up having merge conflicts.
 
-To be continued...
+In the end, I saw in the documentation that it was possible to specify
+[exact requirements](https://python-poetry.org/docs/dependency-specification/#exact-requirements) in the
+`pyproject.toml` file.  This had my preference, so I removed the caret notation and specified specific versions. The
+only annoying thing about this is that you have to either:
+1. Look up the version you want to use and run `poetry add library@version`, or
+1. Run `poetry add library`, remove the caret, delete the `poetry.lock` file, and rerun `poetry install` to create a new
+    lock file.
+
+To be fair, this problem also arises with regular `requirements.txt` files,g so it is not an issue for me.
