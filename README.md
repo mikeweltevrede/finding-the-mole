@@ -7,6 +7,54 @@ Wie Is De Mol ("Who is the Mole") is a Dutch television show that has seen consi
 released in Belgium and there is an American version on Netflix. In this repository, I explore methods to predict who
 the Mole will be.
 
+## Contribution
+I would love to receive your contributions to this learning project. You can contribute in multiple ways:
+1. Help me with my [learning goals](#learning-goals) by sharing what you know on the topic or if you also have some
+   questions you want answers to. Below, I explain what I  already know so please read that first. You can share by
+   opening an issue.
+2. Raise pull requests. Make sure to follow community standards with good descriptions, tests, and follow the
+   [branch naming conventions](#branch-naming-conventions).
+
+### Setup
+1. Install [Poetry](https://python-poetry.org/) locally
+   ```
+   pip install poetry
+   ```
+
+2. Install the dependencies:
+   ```
+   poetry install
+   ```
+
+3. Activate pre-commit hooks:
+   ```
+   pre-commit install
+   ```
+
+4. Run the tests to see if the setup process was successful:
+   ```
+   poetry run pytest
+   ```
+
+### Branch naming conventions
+A git branch should follow the following convention: `<category>/<description>/dev`.
+
+A git branch should start with a category. Pick one of these: `feature`, `fix`, `hotfix`, or `test`.
+- `feature` is for adding, refactoring, or removing a feature.
+- `fix` is for fixing a bug.
+- `hotfix` is for changing code with a temporary solution and/or without following the usual process (usually because of
+  an emergency).
+- `test` is for experimenting outside an issue/ticket.
+
+The description should of course be descriptive; make sure that it reflects what you will be changing.
+
+As such, correct examples are:
+- `feature/add-ci-pipeline/dev`
+- `fix/failing-unit-tests-for-new-polars-version/dev`
+- `test/trying-out-polars/dev`
+
+Inspiration: [A Simplified Convention for Naming Branches and Commits in Git](https://dev.to/varbsan/a-simplified-convention-for-naming-branches-and-commits-in-git-il4)
+
 ## Learning goals
 I have set the following learning goals for myself so far:
 1. I want to get familiar with using [Poetry](https://python-poetry.org/) for Python projects.
