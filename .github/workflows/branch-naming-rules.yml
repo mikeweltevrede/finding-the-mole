@@ -1,6 +1,6 @@
 name: branch-naming-rules
 
-on: [create, push]
+on: [create]
 
 jobs:
   branch-naming-rules:
