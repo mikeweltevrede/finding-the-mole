@@ -1,12 +1,10 @@
 # Inspiration: https://github.com/snok/install-poetry
-name: ci
+name: cd
 
 on:
-  push:
-    branches: ["**"]
   pull_request:
     branches: [main]
-    types: [opened]
+    types: [closed]
 
 jobs:
   test:
@@ -43,4 +41,9 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/ finding_the_mole --doctest-modules
+          pytest tests/ finding_the_mole --doctest-modules --cov finding_the_mole --cov-report=xml
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
