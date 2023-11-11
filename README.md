@@ -125,5 +125,19 @@ To be fair, this problem also arises with regular `requirements.txt` files, so i
 ### GitHub Actions
 [**GitHub Actions website**](https://github.com/features/actions)
 
+Before I started this project, I only heard of GitHub Actions through some GitHub templates. Since I wanted to make sure
+to include CI into this repo, it seemed good to GitHub Actions for this purpose. I already had familiarity with YAML
+pipelines through Azure DevOps so the learning curve is not that steep.
+
+What I like about it so far is that you can easily take actions developed by other people into your pipeline. Moreover,
+the triggers for the different workflows can be quite easily configured and also have many options. On the last point,
+I did run into some issues when I wanted to adapt a workflow with a trigger "create" (run when a new branch is created);
+namely, I could not manually (re)run that workflow on a new commit. It would be perfect if you can kick off any workflow
+manually to test it. Perhaps you can and I could not find how. In that case, it is apparently not clear enough how you
+could.
+
+Overall, I do like how you can easily set up different files that are automatically configured to run on certain
+triggers in your repo rather than having to activate the pipeline in a separate section.
+
 ### Bayesian modelling in Python
 **Inspiration: [CodeErik](https://www.codeerik.nl/widm-2023-op-zoek-naar-de-mol-met-data-analyse/)**
