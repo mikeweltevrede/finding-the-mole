@@ -19,6 +19,14 @@ pre-commit-hooks = "4.5.0"
 pytest = "7.4.3"
 pytest-cov = "4.1.0"
 
+[tool.pytest]
+addopts = "-v --doctest-modules --cov=finding_the_mole --cov-fail-under=80"
+python_files = "*_test.py"
+python_functions = "test_*"
+cov_report = "term-missing"
+cov_report_term = "term-missing:skip-covered"
+cov_report_xml = "coverage.xml"
+
 [tool.ruff]
 line-length = 120
 exclude = ["__init__.py"]
