@@ -43,7 +43,8 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/unit/ finding_the_mole --cov-config=pyproject.toml
+          pytest tests/unit/ finding_the_mole --doctest-modules --cov=finding_the_mole --cov-fail-under=80 \
+          --cov_report_xml="coverage.xml" --cov_report="term-missing"
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
