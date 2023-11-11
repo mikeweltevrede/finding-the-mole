@@ -127,6 +127,11 @@ project. As such, I immediately knew that I wanted to try out Polars.
 ### Deptry library
 [**Deptry GitHub repo**](https://github.com/fpgmaas/deptry)
 
+I was first alerted to Deptry when a colleague of mine, the creator of the library, gave a presentation on his package
+at work. I am keen on keeping my repo clean, so this solution to maintain the proper dependencies and clean them up
+seemed perfect. Although it may not be as relevant or impactful for such a small project, it seems like a very nice
+tool for larger projects.
+
 ### GitHub Actions
 [**GitHub Actions website**](https://github.com/features/actions)
 
