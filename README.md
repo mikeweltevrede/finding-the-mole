@@ -119,6 +119,11 @@ To be fair, this problem also arises with regular `requirements.txt` files, so i
 ### Polars library
 [**Polars website**](https://www.pola.rs/)
 
+Polars grabbed my interest when I saw that it has a very similar syntax to [Pandas](https://pandas.pydata.org/), a
+popular library for data analysis and data science, while being so much faster. Although for big data I like using
+[Pyspark](https://spark.apache.org/docs/latest/api/python/index.html), I knew that that would be overkill for this
+project. As such, I immediately knew that I wanted to try out Polars.
+
 ### Deptry library
 [**Deptry GitHub repo**](https://github.com/fpgmaas/deptry)
 
