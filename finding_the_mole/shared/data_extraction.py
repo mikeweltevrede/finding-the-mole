@@ -1,20 +1,18 @@
-from pathlib import Path
+from types import ModuleType
 
 import polars as pl
 
 
 class DataExtractor:
-    """Data Extractor to read data into Polars DataFrames"""
+    """Data Extractor to read data using an input IO library."""
 
-    @classmethod
-    def read_csv(cls, path: Path, **kwargs) -> pl.DataFrame:
-        """Reads CSV file into Polars DataFrame.
+    def __init__(self, io_library: ModuleType = None) -> None:
+        """Initialize DataExtractor.
+
+        The `io_library` argument can be set to determine in which way to load data. Load data by calling
+        `self.io.<desired_load_function>`.
 
         Args:
-            path: Path to the CSV data to load.
-            **kwargs: Arbitrary keyword arguments to `pl.read_csv`.
-
-        Returns:
-            Polars DataFrame with loaded CSV data.
+            io_library: Library with which to load data. If not set (default), use `polars.io`.
         """
-        return pl.read_csv(source=path, **kwargs)
+        self.io = io_library or pl.io
