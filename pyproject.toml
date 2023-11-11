@@ -20,7 +20,7 @@ pytest = "7.4.3"
 pytest-cov = "4.1.0"
 
 [tool.pytest]
-addopts = "tests/unit/ finding_the_mole -v --doctest-modules --cov=finding_the_mole --cov-fail-under=80"
+addopts = "-v --doctest-modules --cov=finding_the_mole --cov-fail-under=80"
 cov_report = "term-missing"
 cov_report_term = "term-missing:skip-covered"
 cov_report_xml = "coverage.xml"
