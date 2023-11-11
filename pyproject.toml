@@ -41,10 +41,10 @@ extend-select = [
     "N",  # pep8-naming
     "D",  # pydocstyle
 ]
-ignore = ["D100", "D415", "ANN101", "ANN102", "ANN002", "ANN003"]
+ignore = ["D100", "D101", "D415", "ANN101", "ANN102", "ANN002", "ANN003"]
 
 [tool.ruff.lint.extend-per-file-ignores]
-"tests/unit/*.py" = ["ANN201", "D101", "D102", "D103"]
+"tests/unit/*.py" = ["ANN201", "D102", "D103"]
 
 [tool.ruff.lint.flake8-comprehensions]
 allow-dict-calls-with-keyword-arguments = true
