@@ -43,9 +43,11 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/ finding_the_mole --doctest-modules --cov-report=xml
+          pytest tests/ finding_the_mole --cov-config=pyproject.toml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xmlg
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
