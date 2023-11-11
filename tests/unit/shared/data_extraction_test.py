@@ -21,6 +21,6 @@ class TestDataExtractor:
         with tempfile.TemporaryDirectory() as tmp_dir:
             data_path = Path(tmp_dir) / "data.csv"
             io_utils.write_dict_to_csv(data=data, path=data_path)
-            actual = data_extractor.load_csv(path=data_path)
+            actual = data_extractor.read_csv(path=data_path)
 
         pl_testing.assert_frame_equal(actual, expected)
