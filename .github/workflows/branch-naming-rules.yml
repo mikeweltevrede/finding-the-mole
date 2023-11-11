@@ -1,7 +1,6 @@
 name: branch-naming-rules
 
-on:
-  - create
+on: create
 
 jobs:
   branch-naming-rules:
