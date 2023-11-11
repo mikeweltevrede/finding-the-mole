@@ -4,11 +4,11 @@ import polars as pl
 
 
 class DataExtractor:
-    """Data Extractor to load data into Polars DataFrames"""
+    """Data Extractor to read data into Polars DataFrames"""
 
     @classmethod
-    def load_csv(cls, path: Path, **kwargs) -> pl.DataFrame:
-        """Loads CSV file into Polars DataFrame.
+    def read_csv(cls, path: Path, **kwargs) -> pl.DataFrame:
+        """Reads CSV file into Polars DataFrame.
 
         Args:
             path: Path to the CSV data to load.
