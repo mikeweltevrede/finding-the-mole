@@ -154,4 +154,14 @@ triggers in your repo rather than having to activate the pipeline in a separate 
 
 ### Other learnings from this project
 #### Pre-commit hooks with public repo access
-TODO
+I am already familiar with pre-commit hooks. At work, we use them to maintain code quality in many different ways.
+However, we had to download the libraries to use from the internal library repository because our pipelines are not
+allowed to connect to the internet to download them / checkout to repos (which I do like a lot). In this project though,
+I am able to do so, so I wanted to try out pre-commit hooks by checking out to repos.
+
+I stumbled upon [ruff](https://github.com/astral-sh/ruff) a few months ago as a replacement for
+[flake8](https://github.com/PyCQA/flake8). While implementing it and reading the documentation, I did not expect to see
+all the rules that you were able to add to the `ruff` linter. I expected a linter with quite basic checks and that I
+would have to specify other desired checks through other tools. However, as it turned out, I could specify many
+different options through `ruff` and only needed to add some checks from the official
+[pre-commit-hooks](https://github.com/pre-commit/pre-commit-hooks) to satisfy some checks that `ruff` did not have.
