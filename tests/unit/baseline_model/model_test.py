@@ -1,3 +1,5 @@
+import math
+
 import polars as pl
 import polars.testing as pl_testing
 import pytest
@@ -24,6 +26,18 @@ class TestBaselineModel:
             ]
         )
         expected = pl.DataFrame(data=[dict(Name="John", count=2), dict(Name="Mary", count=1)])
+
+        fitted_model = baseline_model.fit(data=data, index_col="Name")
+        pl_testing.assert_frame_equal(fitted_model.counts, expected)
+
+    def test_fit_can_handle_infinite_values(self, baseline_model: BaselineModel):
+        data = pl.DataFrame(
+            data=[
+                dict(Name="John", Task1=1, Task2=1, Task3=-math.inf),
+                dict(Name="Mary", Task1=0, Task2=1, Task3=0),
+            ]
+        )
+        expected = pl.DataFrame(data=[dict(Name="John", count=-math.inf), dict(Name="Mary", count=1)])
 
         fitted_model = baseline_model.fit(data=data, index_col="Name")
         pl_testing.assert_frame_equal(fitted_model.counts, expected)
