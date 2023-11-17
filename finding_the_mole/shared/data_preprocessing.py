@@ -1,10 +1,11 @@
+import math
 from typing import Any, Hashable, Iterable
 
 import polars as pl
 
 
 class DataPreprocessor:
-    MAPPER = {"M": 1, "O": 0, "P": 0}
+    MAPPER = {"M": 1, "O": 0, "P": 0, "X": -math.inf}
 
     @classmethod
     def extend_mapper_str_keys_with_upper_and_lowercase(cls, mapper: dict[str, Any]) -> dict[str, Any]:

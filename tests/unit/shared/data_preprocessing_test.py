@@ -1,3 +1,5 @@
+import math
+
 import polars as pl
 import pytest
 from assertpy import assert_that
@@ -31,11 +33,11 @@ class TestDataPreprocessor:
 
         assert_that(actual[0, "Task1"]).is_equal_to(1)
 
-    def test_map_values_converts_x_to_none_with_default_mapper(self):
+    def test_map_values_converts_x_to_negative_infinity_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="X")])
         actual = DataPreprocessor.map_values(data=data)
 
-        assert_that(actual[0, "Task1"]).is_equal_to(None)
+        assert_that(actual[0, "Task1"]).is_equal_to(-math.inf)
 
     def test_map_values_converts_o_to_0_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="O")])
