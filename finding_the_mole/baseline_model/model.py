@@ -48,7 +48,7 @@ class BaselineModel(Model):
         the total count. When the count is (negative or positive) infinite, do not take that row into account.
 
         Returns:
-            List of predictions between 0 and 1.
+            Numpy array of predictions between 0 and 1.
         """
         if not self._fitted:
             raise RuntimeError("Model has not been fitted")
