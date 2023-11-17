@@ -22,8 +22,9 @@ class DataPreprocessor:
             **{key.upper(): value for key, value in mapper.items()},
         }
 
+    @classmethod
     def map_values(
-        self, data: pl.DataFrame, mapper: dict[Hashable, Any] = None, exclude_cols: Iterable[str] = None
+        cls, data: pl.DataFrame, mapper: dict[Hashable, Any] = None, exclude_cols: Iterable[str] = None
     ) -> pl.DataFrame:
         """Maps values in DataFrame to others according to mapper.
 

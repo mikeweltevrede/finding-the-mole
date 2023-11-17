@@ -25,33 +25,33 @@ class TestDataPreprocessor:
         actual = DataPreprocessor.extend_mapper_str_keys_with_upper_and_lowercase(mapper=mapper)
         assert_that(actual).contains_key("somekey")
 
-    def test_map_values_converts_m_to_1_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+    def test_map_values_converts_m_to_1_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="M")])
-        actual = data_preprocessor.map_values(data=data)
+        actual = DataPreprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(1)
 
-    def test_map_values_converts_x_to_none_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+    def test_map_values_converts_x_to_none_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="X")])
-        actual = data_preprocessor.map_values(data=data)
+        actual = DataPreprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(None)
 
-    def test_map_values_converts_o_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+    def test_map_values_converts_o_to_0_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="O")])
-        actual = data_preprocessor.map_values(data=data)
+        actual = DataPreprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
 
-    def test_map_values_converts_p_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+    def test_map_values_converts_p_to_0_with_default_mapper(self):
         data = pl.DataFrame(data=[dict(Task1="P")])
-        actual = data_preprocessor.map_values(data=data)
+        actual = DataPreprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
 
     @pytest.mark.parametrize("index_value", ["M", "P", "O", "X"])
-    def test_map_values_does_not_convert_exclude_cols(self, data_preprocessor: DataPreprocessor, index_value: str):
+    def test_map_values_does_not_convert_exclude_cols(self, index_value: str):
         data = pl.DataFrame(data=[dict(Index=index_value, Task1="P")])
-        actual = data_preprocessor.map_values(data=data, exclude_cols=["Index"])
+        actual = DataPreprocessor.map_values(data=data, exclude_cols=["Index"])
 
         assert_that(actual[0, "Index"]).is_equal_to(index_value)
