@@ -1,4 +1,4 @@
-from typing import Self
+from typing import Iterable, Self
 
 import numpy as np
 import polars as pl
@@ -18,7 +18,7 @@ class BaselineModel(Model):
         Model.__init__(self)
         self.counts = None
 
-    def fit(self: Self, data: pl.DataFrame, index_col: str = None) -> Self:
+    def fit(self: Self, data: pl.DataFrame, exclude_cols: Iterable[str] = None) -> Self:
         """Method to fit model on data.
 
         It will count the number of times that a candidate has been in a role in which I would expect the Mole to be in.
@@ -26,13 +26,13 @@ class BaselineModel(Model):
         Args:
             data: Input data to fit the model on. Index represents the candidate name or index and columns are
                 indicating which role the candidate was in.
-            index_col: Column name which represents an index to compute the count over.
+            exclude_cols: Column name(s) which should not be included in the row count.
 
         Returns:
             Fitted model.
         """
-        counts = data.with_columns(data.select(pl.all().exclude(index_col)).sum(axis=1).alias(self.COUNT_COL))
-        self.counts = counts.select(index_col, self.COUNT_COL)
+        counts = data.with_columns(data.select(pl.all().exclude(*exclude_cols)).sum(axis=1).alias(self.COUNT_COL))
+        self.counts = counts.select(*exclude_cols, self.COUNT_COL)
         self._fitted = True
 
         return self
