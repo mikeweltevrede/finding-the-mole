@@ -37,5 +37,4 @@ class DataPreprocessor:
             Same DataFrame with converted values.
         """
         mapper = mapper or DataPreprocessor.MAPPER
-        mapper = self.extend_mapper_str_keys_with_upper_and_lowercase(mapper=mapper)
         return data.select(pl.all().map_dict(mapper))
