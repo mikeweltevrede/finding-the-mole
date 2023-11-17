@@ -7,11 +7,11 @@ class DataPreprocessor:
     MAPPER = {"M": 1, "O": 0, "P": 0}
 
     @classmethod
-    def extend_mapper_keys_with_upper_and_lowercase(cls, mapper: dict[str, Any]) -> dict[str, Any]:
-        """Extend keys of `mapper` with the upper and lowercase variants.
+    def extend_mapper_str_keys_with_upper_and_lowercase(cls, mapper: dict[str, Any]) -> dict[str, Any]:
+        """Extend string-type keys of `mapper` with the upper and lowercase variants.
 
         Args:
-            mapper: Dictionary to extend the keys for.
+            mapper: Dictionary to extend the string-type keys for.
 
         Returns:
             Mapper dictionary with the same keys, extended with the lower and uppercase variants of those keys.
@@ -37,5 +37,5 @@ class DataPreprocessor:
             Same DataFrame with converted values.
         """
         mapper = mapper or DataPreprocessor.MAPPER
-        mapper = self.extend_mapper_keys_with_upper_and_lowercase(mapper=mapper)
+        mapper = self.extend_mapper_str_keys_with_upper_and_lowercase(mapper=mapper)
         return data.select(pl.all().map_dict(mapper))
