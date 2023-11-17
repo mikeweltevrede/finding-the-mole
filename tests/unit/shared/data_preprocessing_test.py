@@ -48,3 +48,10 @@ class TestDataPreprocessor:
         actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
+
+    @pytest.mark.parametrize("index_value", ["M", "P", "O", "X"])
+    def test_map_values_does_not_convert_exclude_cols(self, data_preprocessor: DataPreprocessor, index_value: str):
+        data = pl.DataFrame(data=[dict(Index=index_value, Task1="P")])
+        actual = data_preprocessor.map_values(data=data, exclude_cols=["Index"])
+
+        assert_that(actual[0, "Index"]).is_equal_to(index_value)
