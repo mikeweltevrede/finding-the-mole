@@ -17,7 +17,7 @@ class TestBaselineModel:
 
     def test_fit_sets_fitted_to_true(self, baseline_model: BaselineModel):
         data = pl.DataFrame(data=[dict(Name="John", Task1=1, Task2=1, Task3=0)])
-        baseline_model.fit(data=data, index_col="Name")
+        baseline_model.fit(data=data, exclude_cols=["Name"])
         assert_that(baseline_model._fitted).is_true()
 
     def test_fit_computes_count_per_row(self, baseline_model: BaselineModel):
@@ -29,7 +29,7 @@ class TestBaselineModel:
         )
         expected = pl.DataFrame(data=[dict(Name="John", count=2), dict(Name="Mary", count=1)])
 
-        fitted_model = baseline_model.fit(data=data, index_col="Name")
+        fitted_model = baseline_model.fit(data=data, exclude_cols=["Name"])
         pl_testing.assert_frame_equal(fitted_model.counts, expected)
 
     def test_fit_can_handle_infinite_values(self, baseline_model: BaselineModel):
@@ -41,7 +41,7 @@ class TestBaselineModel:
         )
         expected = pl.DataFrame(data=[dict(Name="John", count=-math.inf), dict(Name="Mary", count=1)])
 
-        fitted_model = baseline_model.fit(data=data, index_col="Name")
+        fitted_model = baseline_model.fit(data=data, exclude_cols=["Name"])
         pl_testing.assert_frame_equal(fitted_model.counts, expected)
 
     def test_predict_raises_runtime_error_when_model_not_fitted(self, baseline_model: BaselineModel):
