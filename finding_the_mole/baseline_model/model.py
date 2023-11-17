@@ -21,12 +21,13 @@ class BaselineModel(Model):
     def fit(self: Self, data: pl.DataFrame, exclude_cols: Iterable[str] = None) -> Self:
         """Method to fit model on data.
 
-        It will count the number of times that a candidate has been in a role in which I would expect the Mole to be in.
+        It will count the number of times that a candidate has been in a role in which I would expect the Mole to be.
 
         Args:
             data: Input data to fit the model on. Index represents the candidate name or index and columns are
                 indicating which role the candidate was in.
-            exclude_cols: Column name(s) which should not be included in the row count.
+            exclude_cols: Column name(s) which should not be included in the row count and could be regarded as the
+                index/indices.
 
         Returns:
             Fitted model.
