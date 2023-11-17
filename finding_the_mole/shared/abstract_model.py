@@ -23,11 +23,8 @@ class Model(ABC):
         """
 
     @abstractmethod
-    def predict(self: Self, data: pl.DataFrame | np.ndarray) -> list[float]:
+    def predict(self: Self, *args, **kwargs) -> np.ndarray[float]:
         """Method to predict on data with the model. Should check that `self._fitted` is `True` before being run.
-
-        Args:
-            data: Data to predict on. Either a Polars DataFrame or Numpy array.
 
         Returns:
             Predictions on the data.

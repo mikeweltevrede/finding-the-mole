@@ -1,11 +1,14 @@
 from typing import Self
 
+import numpy as np
 import polars as pl
 
 from finding_the_mole.shared.abstract_model import Model
 
 
 class BaselineModel(Model):
+    COUNT_COL = "count"
+
     def __init__(self) -> None:
         """Baseline model class.
 
@@ -28,21 +31,25 @@ class BaselineModel(Model):
         Returns:
             Fitted model.
         """
-        counts = data.with_columns(data.select(pl.all().exclude(index_col)).sum(axis=1).alias("count"))
-        self.counts = counts.select(index_col, "count")
+        counts = data.with_columns(data.select(pl.all().exclude(index_col)).sum(axis=1).alias(self.COUNT_COL))
+        self.counts = counts.select(index_col, self.COUNT_COL)
         self._fitted = True
 
         return self
 
-    def predict(self, data: pl.DataFrame) -> list[float]:
+    def predict(self) -> np.ndarray[float]:
         """Method to predict on data with the model.
 
         Predicts Mole probability by converting the fitted model count into the probability of that count compared to
-        the total count.
-
-        Args:
-            data: Data to predict the Mole probability for.
+        the total count. When the count is (negative or positive) infinite, do not take that row into account.
 
         Returns:
             List of predictions between 0 and 1.
         """
+        if not self._fitted:
+            raise RuntimeError("Model has not been fitted")
+
+        data = self.counts.with_columns(
+            pl.when(pl.col(self.COUNT_COL).is_infinite()).then(0).otherwise(pl.col(self.COUNT_COL)).keep_name()
+        )
+        return np.array(data[self.COUNT_COL] / sum(data[self.COUNT_COL]))

@@ -1,5 +1,7 @@
 import math
 
+import numpy as np
+import numpy.testing as np_testing
 import polars as pl
 import polars.testing as pl_testing
 import pytest
@@ -41,3 +43,29 @@ class TestBaselineModel:
 
         fitted_model = baseline_model.fit(data=data, index_col="Name")
         pl_testing.assert_frame_equal(fitted_model.counts, expected)
+
+    def test_predict_raises_runtime_error_when_model_not_fitted(self, baseline_model: BaselineModel):
+        baseline_model._fitted = False
+        with pytest.raises(RuntimeError) as e:
+            baseline_model.predict()
+        assert_that(str(e.value)).is_equal_to("Model has not been fitted")
+
+    def test_predict_computes_score_proportion(self, baseline_model: BaselineModel):
+        expected = np.array([2 / 3, 1 / 3])
+        baseline_model.counts = pl.DataFrame(data=[dict(Name="John", count=2), dict(Name="Mary", count=1)])
+        baseline_model._fitted = True
+
+        actual = baseline_model.predict()
+
+        np_testing.assert_allclose(actual, expected)
+
+    def test_predict_computes_score_proportion_ignoring_infinite_values(self, baseline_model: BaselineModel):
+        expected = np.array([2 / 3, 1 / 3, 0])
+        baseline_model.counts = pl.DataFrame(
+            data=[dict(Name="John", count=2), dict(Name="Mary", count=1), dict(name="Alex", count=-math.inf)]
+        )
+        baseline_model._fitted = True
+
+        actual = baseline_model.predict()
+
+        np_testing.assert_allclose(actual, expected)
