@@ -31,8 +31,12 @@ class BaselineModel(Model):
         Returns:
             Fitted model.
         """
-        counts = data.with_columns(data.select(pl.all().exclude(*exclude_cols)).sum(axis=1).alias(self.COUNT_COL))
-        self.counts = counts.select(*exclude_cols, self.COUNT_COL)
+        if exclude_cols:
+            counts = data.with_columns(data.select(pl.all().exclude(*exclude_cols)).sum(axis=1).alias(self.COUNT_COL))
+            self.counts = counts.select(*exclude_cols, self.COUNT_COL)
+        else:
+            counts = data.with_columns(data.select(pl.all()).sum(axis=1).alias(self.COUNT_COL))
+            self.counts = counts.select(self.COUNT_COL)
         self._fitted = True
 
         return self
