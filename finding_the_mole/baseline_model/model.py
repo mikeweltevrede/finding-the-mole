@@ -28,10 +28,6 @@ class BaselineModel(Model):
         Returns:
             Fitted model.
         """
-        # TODO: Refactor to separate function in data preprocessing
-        mapper = {"M": 1, "P": 0, "X": -1e6, "O": 0}
-        data = data.select(index_col, pl.all().exclude(index_col).map_dict(mapper))
-
         counts = data.with_columns(data.select(pl.all().exclude(index_col)).sum(axis=1).alias("count"))
         self.counts = counts.select(index_col, "count")
         self._fitted = True
