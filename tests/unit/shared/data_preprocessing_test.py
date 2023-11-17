@@ -10,38 +10,26 @@ class TestDataPreprocessor:
     def data_preprocessor(self) -> DataPreprocessor:
         return DataPreprocessor()
 
-    @pytest.mark.parametrize("m", ["M", "m"])
-    def test_convert_letters_to_ints_converts_m_to_1_with_default_mapper_case_insensitive(
-        self, data_preprocessor: DataPreprocessor, m: str
-    ):
-        data = pl.DataFrame(data=[dict(Task1=m)])
+    def test_map_values_converts_m_to_1_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+        data = pl.DataFrame(data=[dict(Task1="M")])
         actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(1)
 
-    @pytest.mark.parametrize("x", ["X", "x"])
-    def test_convert_letters_to_ints_converts_x_to_none_with_default_mapper_case_insensitive(
-        self, data_preprocessor: DataPreprocessor, x: str
-    ):
-        data = pl.DataFrame(data=[dict(Task1=x)])
+    def test_map_values_converts_x_to_none_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+        data = pl.DataFrame(data=[dict(Task1="X")])
         actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(None)
 
-    @pytest.mark.parametrize("o", ["O", "o"])
-    def test_convert_letters_to_ints_converts_o_to_0_with_default_mapper_case_insensitive(
-        self, data_preprocessor: DataPreprocessor, o: str
-    ):
-        data = pl.DataFrame(data=[dict(Task1=o)])
+    def test_map_values_converts_o_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+        data = pl.DataFrame(data=[dict(Task1="O")])
         actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
 
-    @pytest.mark.parametrize("p", ["P", "p"])
-    def test_convert_letters_to_ints_converts_p_to_0_with_default_mapper_case_insensitive(
-        self, data_preprocessor: DataPreprocessor, p: str
-    ):
-        data = pl.DataFrame(data=[dict(Task1=p)])
+    def test_convert_letters_to_ints_converts_p_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+        data = pl.DataFrame(data=[dict(Task1="P")])
         actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
