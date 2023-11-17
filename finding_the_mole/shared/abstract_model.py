@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Optional, Self
+from typing import Self
 
 import numpy as np
-import polars as pl
 
 
 class Model(ABC):
@@ -11,7 +10,7 @@ class Model(ABC):
         self._fitted = False
 
     @abstractmethod
-    def fit(self, **kwargs: Optional[pl.DataFrame]) -> Self:
+    def fit(self, **kwargs) -> Self:
         """Method to fit model on data. Should set `self._fitted` to `True` after being run.
 
         Args:
@@ -23,8 +22,12 @@ class Model(ABC):
         """
 
     @abstractmethod
-    def predict(self: Self, *args, **kwargs) -> np.ndarray[float]:
+    def predict(self: Self, **kwargs) -> np.ndarray[float]:
         """Method to predict on data with the model. Should check that `self._fitted` is `True` before being run.
+
+        Args:
+            **kwargs: Keyword arguments can be implemented by concrete methods, e.g. depending on whether it is a
+                supervised or unsupervised model it could need specific arguments.
 
         Returns:
             Predictions on the data.
