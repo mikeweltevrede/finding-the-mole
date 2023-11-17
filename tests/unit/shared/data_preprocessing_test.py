@@ -43,7 +43,7 @@ class TestDataPreprocessor:
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
 
-    def test_convert_letters_to_ints_converts_p_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
+    def test_map_values_converts_p_to_0_with_default_mapper(self, data_preprocessor: DataPreprocessor):
         data = pl.DataFrame(data=[dict(Task1="P")])
         actual = data_preprocessor.map_values(data=data)
 
