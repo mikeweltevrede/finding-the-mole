@@ -12,8 +12,9 @@ class TestBaselineModel:
         return BaselineModel()
 
     def test_fit_sets_fitted_to_true(self, baseline_model: BaselineModel):
-        baseline_model.fit(data=pl.DataFrame())
-
+        baseline_model.fit(
+            data=pl.DataFrame(data=[dict(Name="John", Task1="M", Task2="M", Task3="O")]), index_col="Name"
+        )
         assert_that(baseline_model._fitted).is_true()
 
     def test_fit_computes_count_of_m_per_row(self, baseline_model: BaselineModel):
