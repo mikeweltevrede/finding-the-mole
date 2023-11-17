@@ -1,6 +1,7 @@
 import pytest
 
-from finding_the_mole.utils.assertions import assert_dict_values_have_same_length
+from finding_the_mole.utils.assertions import \
+    assert_dict_values_have_same_length
 
 
 def test_assert_dict_values_have_same_length_passes_on_matching_lengths():
