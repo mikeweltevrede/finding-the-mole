@@ -15,7 +15,7 @@ class TestDataPreprocessor:
         self, data_preprocessor: DataPreprocessor, m: str
     ):
         data = pl.DataFrame(data=[dict(Task1=m)])
-        actual = data_preprocessor.convert_letters_to_ints(data=data)
+        actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(1)
 
@@ -24,7 +24,7 @@ class TestDataPreprocessor:
         self, data_preprocessor: DataPreprocessor, x: str
     ):
         data = pl.DataFrame(data=[dict(Task1=x)])
-        actual = data_preprocessor.convert_letters_to_ints(data=data)
+        actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(None)
 
@@ -33,7 +33,7 @@ class TestDataPreprocessor:
         self, data_preprocessor: DataPreprocessor, o: str
     ):
         data = pl.DataFrame(data=[dict(Task1=o)])
-        actual = data_preprocessor.convert_letters_to_ints(data=data)
+        actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)
 
@@ -42,6 +42,6 @@ class TestDataPreprocessor:
         self, data_preprocessor: DataPreprocessor, p: str
     ):
         data = pl.DataFrame(data=[dict(Task1=p)])
-        actual = data_preprocessor.convert_letters_to_ints(data=data)
+        actual = data_preprocessor.map_values(data=data)
 
         assert_that(actual[0, "Task1"]).is_equal_to(0)

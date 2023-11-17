@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Hashable
 
 import polars as pl
 
@@ -22,15 +22,16 @@ class DataPreprocessor:
             **{key.upper(): value for key, value in mapper.items()},
         }
 
-    def convert_letters_to_ints(self, data: pl.DataFrame, mapper: dict[str, int] = None) -> pl.DataFrame:
-        """Convert letters in DataFrame to integers according to mapper.
+    def map_values(self, data: pl.DataFrame, mapper: dict[Hashable, Any] = None) -> pl.DataFrame:
+        """Maps values in DataFrame to others according to mapper.
 
         Converts all cells in `data` according to `mapper`, where all cells equal to the key get the corresponding
         value.
 
         Args:
             data: Data to convert the values for.
-            mapper: Mapper with key equal to what should be replaced and value what the new value is.
+            mapper: Mapper with key equal to what should be replaced and value what the new value is. If not provided,
+                the class attribute `MAPPER` is used.
 
         Returns:
             Same DataFrame with converted values.
