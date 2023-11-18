@@ -1,0 +1,5 @@
+read_path: data
+file_name: data2022.csv
+index_col: Name
+tasks_per_episode: 3
+num_episodes_to_train_on: all

@@ -1,6 +1,7 @@
 import math
 
 import polars as pl
+import polars.testing as pl_testing
 import pytest
 from assertpy import assert_that
 
@@ -10,7 +11,8 @@ from finding_the_mole.shared.data_preprocessing import DataPreprocessor
 class TestDataPreprocessor:
     @pytest.fixture()
     def data_preprocessor(self) -> DataPreprocessor:
-        return DataPreprocessor()
+        context = DataPreprocessor.Context(index_col="Index", num_episodes_to_train_on="all", tasks_per_episode=3)
+        return DataPreprocessor(context=context)
 
     def test_extend_mapper_str_keys_with_upper_and_lowercase_retains_existing_key(self):
         mapper = dict(SomeKey=1)
@@ -57,3 +59,65 @@ class TestDataPreprocessor:
         actual = DataPreprocessor.map_values(data=data, exclude_cols=["Index"])
 
         assert_that(actual[0, "Index"]).is_equal_to(index_value)
+
+    def test_limit_data_to_train_set_with_num_episodes_to_train_on_all_does_not_filter(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        actual = data_preprocessor.limit_data_to_train_set(data=expected)
+
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_train_set_with_num_episodes_to_train_on_1_and_tasks_per_episode_3_keeps_first_3_task_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.num_episodes_to_train_on = 1
+        data_preprocessor.context.tasks_per_episode = 3
+
+        data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1)])
+        actual = data_preprocessor.limit_data_to_train_set(data=data)
+
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_train_set_with_num_episodes_to_train_on_1_and_tasks_per_episode_2_keeps_first_2_task_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.num_episodes_to_train_on = 1
+        data_preprocessor.context.tasks_per_episode = 2
+
+        data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0)])
+        actual = data_preprocessor.limit_data_to_train_set(data=data)
+
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_train_set_with_num_episodes_to_train_on_2_and_tasks_per_episode_2_keeps_first_4_task_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.num_episodes_to_train_on = 2
+        data_preprocessor.context.tasks_per_episode = 2
+
+        data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1)])
+        actual = data_preprocessor.limit_data_to_train_set(data=data)
+
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_train_set_with_num_episodes_to_train_on_2_and_tasks_per_episode_1_keeps_first_2_task_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.num_episodes_to_train_on = 2
+        data_preprocessor.context.tasks_per_episode = 1
+
+        data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0)])
+        actual = data_preprocessor.limit_data_to_train_set(data=data)
+
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_train_set_allows_for_custom_prefix_task_cols(self, data_preprocessor: DataPreprocessor):
+        expected = pl.DataFrame(data=[dict(Index="index", T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
+        actual = data_preprocessor.limit_data_to_train_set(data=expected, prefix_task_cols="T")
+
+        pl_testing.assert_frame_equal(actual, expected)
