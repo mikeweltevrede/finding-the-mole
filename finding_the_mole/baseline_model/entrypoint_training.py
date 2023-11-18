@@ -17,7 +17,9 @@ class TrainingJob(AbstractTrainingJob):
         """Context dataclass for training job"""
 
         read_path: str
-        file_name: str
+        data_file_name: str
+        write_path_models: str
+        model_pickle_name: str
         index_col: str
 
     def __init__(self, config_path: str) -> None:
@@ -39,7 +41,7 @@ class TrainingJob(AbstractTrainingJob):
     def data_extraction(self) -> pl.DataFrame:
         """Data extraction orchestration method of the TrainingJob."""
         data_extractor = DataExtractor()
-        return data_extractor.io.read_csv(source=Path(self.context.read_path) / self.context.file_name)
+        return data_extractor.io.read_csv(source=Path(self.context.read_path) / self.context.data_file_name)
 
     def data_preprocessing(self, data: pl.DataFrame) -> pl.DataFrame:
         """Data preprocessing orchestration method of the TrainingJob."""
@@ -53,7 +55,11 @@ class TrainingJob(AbstractTrainingJob):
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
         """Model training orchestration method of the TrainingJob."""
         model = BaselineModel()
-        return model.fit(data=data, exclude_cols=[self.context.index_col])
+        fitted_model = model.fit(data=data, exclude_cols=[self.context.index_col])
+        fitted_model.to_pickle(
+            path=Path(self.context.write_path_models) / fitted_model.__class__.__name__ / self.context.model_pickle_name
+        )
+        return fitted_model
 
 
 if __name__ == "__main__":
