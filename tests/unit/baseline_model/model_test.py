@@ -1,4 +1,7 @@
 import math
+import pickle
+from pathlib import Path
+from unittest import mock
 
 import numpy as np
 import numpy.testing as np_testing
@@ -81,3 +84,18 @@ class TestBaselineModel:
         actual = baseline_model.predict()
 
         np_testing.assert_allclose(actual, expected)
+
+    def test_to_pickle_creates_pickle_file(self, baseline_model: BaselineModel, tmp_path: Path):
+        path_pickle = tmp_path / "test_pickle.pkl"
+        baseline_model.to_pickle(path=path_pickle)
+        assert_that(Path.exists(path_pickle)).is_true()
+
+    def test_to_pickle_dumps_self(self, baseline_model: BaselineModel, tmp_path: Path):
+        with mock.patch("pickle.dump") as mocked:
+            baseline_model.to_pickle(path=tmp_path / "test_pickle.pkl")
+            mocked.assert_called_once_with(**dict(obj=baseline_model, file=mock.ANY, protocol=mock.ANY))
+
+    def test_to_pickle_stores_using_highest_protocol(self, baseline_model: BaselineModel, tmp_path: Path):
+        with mock.patch("pickle.dump") as mocked:
+            baseline_model.to_pickle(path=tmp_path / "test_pickle.pkl")
+            mocked.assert_called_once_with(**dict(obj=mock.ANY, file=mock.ANY, protocol=pickle.HIGHEST_PROTOCOL))
