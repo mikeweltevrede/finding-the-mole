@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Hashable, Iterable, Literal
+from typing import Any, Hashable, Iterable
 
 import polars as pl
 from dataclass_wizard import YAMLWizard
@@ -16,7 +16,7 @@ class DataPreprocessor:
         """Context dataclass for data preprocessing"""
 
         index_col: str
-        num_episodes_to_train_on: int | Literal["all"]
+        num_episodes_to_train_on: int | str  # TODO: File issue on GitHub that it cannot handle Literal
         tasks_per_episode: int = 3
 
     def __init__(self, context: DataPreprocessor.Context) -> None:
