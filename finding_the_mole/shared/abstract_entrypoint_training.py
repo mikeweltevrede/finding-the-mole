@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 import polars as pl
 
-from finding_the_mole.baseline_model.model import BaselineModel
+from finding_the_mole.shared.abstract_model import Model
 
 
 class AbstractTrainingJob(ABC):
@@ -12,7 +12,7 @@ class AbstractTrainingJob(ABC):
     )
 
     @abstractmethod
-    def launch(self, **kwargs) -> BaselineModel:
+    def launch(self, **kwargs) -> Model:
         """Main method of the TrainingJob. Orchestrates all other logic."""
 
     def data_extraction(self, **kwargs) -> pl.DataFrame:
@@ -23,6 +23,6 @@ class AbstractTrainingJob(ABC):
         """Data preprocessing orchestration method of the TrainingJob."""
         raise NotImplementedError(self.MSG_METHOD_NOT_IMPLEMENTED)
 
-    def model_training(self, **kwargs) -> BaselineModel:
+    def model_training(self, **kwargs) -> Model:
         """Model training orchestration method of the TrainingJob."""
         raise NotImplementedError(self.MSG_METHOD_NOT_IMPLEMENTED)
