@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-import numpy as np
 import polars as pl
 
 from finding_the_mole.shared.abstract_model import Model
@@ -28,6 +27,6 @@ class AbstractInferenceJob(ABC):
         """Model loading orchestration method of the InferenceJob."""
         raise NotImplementedError(self.MSG_METHOD_NOT_IMPLEMENTED)
 
-    def model_inference(self, **kwargs) -> np.ndarray[float]:
+    def model_inference(self, **kwargs) -> pl.DataFrame:
         """Model inference orchestration method of the InferenceJob."""
         raise NotImplementedError(self.MSG_METHOD_NOT_IMPLEMENTED)
