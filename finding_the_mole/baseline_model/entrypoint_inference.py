@@ -66,11 +66,7 @@ class InferenceJob(AbstractInferenceJob):
             inference output based on this.
         """
         model = BaselineModel()
-        fitted_model = model.fit(data=data, exclude_cols=[self.context.index_col])
-        fitted_model.to_pickle(
-            path=Path(self.context.write_path_models) / fitted_model.__class__.__name__ / self.context.model_pickle_name
-        )
-        return fitted_model
+        return model.fit(data=data, exclude_cols=[self.context.index_col])
 
     def model_inference(self, **kwargs) -> pl.DataFrame:
         """Model inference orchestration method of the InferenceJob.
