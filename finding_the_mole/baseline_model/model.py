@@ -76,7 +76,7 @@ class BaselineModel(Model):
             pickle.dump(obj=self, file=stream, protocol=pickle.HIGHEST_PROTOCOL)
 
     @classmethod
-    def from_pickle(cls, path: Path | os.PathLike | str) -> Model:
+    def from_pickle(cls, path: Path | os.PathLike | str) -> "BaselineModel":
         """Load model from Pickle file.
 
         Loads the object from a Pickle file at the given path.

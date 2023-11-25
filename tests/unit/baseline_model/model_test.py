@@ -99,3 +99,22 @@ class TestBaselineModel:
         with mock.patch("pickle.dump") as mocked:
             baseline_model.to_pickle(path=tmp_path / "test_pickle.pkl")
             mocked.assert_called_once_with(**dict(obj=mock.ANY, file=mock.ANY, protocol=pickle.HIGHEST_PROTOCOL))
+
+    def test_from_pickle_reads_model(self, baseline_model: BaselineModel, tmp_path: Path):
+        with Path.open(tmp_file := tmp_path / "model.pkl", "wb") as stream:
+            pickle.dump(obj=baseline_model, file=stream, protocol=pickle.HIGHEST_PROTOCOL)
+
+        loaded_model: BaselineModel = BaselineModel.from_pickle(path=tmp_file)
+        assert_that(loaded_model.counts).is_equal_to(baseline_model.counts)
+
+    def test_from_pickle_raises_typeerror_if_loaded_pickle_is_not_a_model(self, tmp_path: Path):
+        class NotAModel:
+            ...
+
+        tmp_file = tmp_path / "tmp_file.txt"
+        tmp_file.touch()
+
+        with mock.patch("pickle.load", return_value=NotAModel()):
+            with pytest.raises(TypeError) as e:
+                BaselineModel.from_pickle(path=tmp_file)
+            assert_that(str(e.value)).is_equal_to("Loaded object is not a Model")
