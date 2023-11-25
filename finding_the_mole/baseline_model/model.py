@@ -74,3 +74,25 @@ class BaselineModel(Model):
 
         with Path.open(path, "wb") as stream:
             pickle.dump(obj=self, file=stream, protocol=pickle.HIGHEST_PROTOCOL)
+
+    @classmethod
+    def from_pickle(cls, path: Path | os.PathLike | str) -> Model:
+        """Load model from Pickle file.
+
+        Loads the object from a Pickle file at the given path.
+
+        Args:
+            path: Path to load the model Pickle file from.
+
+        Raises:
+            TypeError: When the loaded object is not a Model.
+
+        Returns:
+            The Model object loaded from the Pickle file.
+        """
+        with Path.open(path, "rb") as stream:
+            model = pickle.load(file=stream)
+
+        if not isinstance(model, Model):
+            raise TypeError("Loaded object is not a Model")
+        return model

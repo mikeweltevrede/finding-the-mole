@@ -1,26 +1,53 @@
-import numpy as np
-import polars as pl
+import math
+from dataclasses import dataclass
+from pathlib import Path
 
+import polars as pl
+import yaml
+from dataclass_wizard import YAMLWizard
+
+from finding_the_mole.baseline_model.model import BaselineModel
 from finding_the_mole.shared.abstract_entrypoint_inference import AbstractInferenceJob
 from finding_the_mole.shared.abstract_model import Model
 
 
 class InferenceJob(AbstractInferenceJob):
+    @dataclass
+    class Context(YAMLWizard):
+        """Context dataclass for training job"""
+
+        read_path_models: str
+        model_pickle_name: str
+
+    def __init__(self, config_path: str) -> None:
+        """Entrypoint to the training job.
+
+        Args:
+            config_path: Path to the training config. Will be used for this job's context as well as the contexts to all
+                orchestrated methods.
+        """
+        self.config_path = config_path
+        self.context = self.Context.from_yaml_file(file=config_path, decoder=yaml.safe_load)
+
     def launch(self) -> None:
         """Main method of the InferenceJob. Orchestrates all other logic."""
-        self.data_extraction()
-        self.data_preprocessing()
-        self.model_loading()
-        self.model_inference()
+        model = self.model_loading()
+        results = self.model_inference(model=model)
+        print(results.filter(pl.col("count") != -math.inf).sort("predictions", descending=True))
 
-    def data_extraction(self, **kwargs) -> pl.DataFrame:
-        """Data extraction orchestration method of the InferenceJob."""
-
-    def data_preprocessing(self, **kwargs) -> pl.DataFrame:
-        """Data preprocessing orchestration method of the InferenceJob."""
-
-    def model_loading(self, **kwargs) -> Model:
+    def model_loading(self) -> Model:
         """Model loading orchestration method of the InferenceJob."""
+        return BaselineModel.from_pickle(
+            path=Path(self.context.read_path_models) / "BaselineModel" / self.context.model_pickle_name
+        )
 
-    def model_inference(self, **kwargs) -> np.ndarray[float]:
+    def model_inference(self, **kwargs) -> pl.DataFrame:
         """Model inference orchestration method of the InferenceJob."""
+        model = kwargs["model"]
+        preds = model.predict()
+        return model.counts.with_columns(pl.Series(name="predictions", values=preds))
+
+
+if __name__ == "__main__":
+    job = InferenceJob(config_path=str(Path(__file__).parents[1] / "conf" / "inference_config.yaml"))
+    job.launch()

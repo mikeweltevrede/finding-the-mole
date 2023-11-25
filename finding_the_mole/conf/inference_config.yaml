@@ -1,0 +1,2 @@
+read_path_models: output/models
+model_pickle_name: model.pkl
