@@ -1,4 +1,7 @@
+import os
+import pickle
 from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Self
 
 import numpy as np
@@ -32,3 +35,38 @@ class Model(ABC):
         Returns:
             Predictions on the data.
         """
+
+    def to_pickle(self: Self, path: Path | os.PathLike | str) -> None:
+        """Store model in a pickle file.
+
+        Saves the object into a pickle file at the given path.
+
+        Args:
+            path: Path to store the model pickle file at.
+        """
+        path.parent.mkdir(parents=True, exist_ok=True)
+
+        with Path.open(path, "wb") as stream:
+            pickle.dump(obj=self, file=stream, protocol=pickle.HIGHEST_PROTOCOL)
+
+    @classmethod
+    def from_pickle(cls, path: Path | os.PathLike | str) -> Self:
+        """Load model from Pickle file.
+
+        Loads the object from a Pickle file at the given path.
+
+        Args:
+            path: Path to load the model Pickle file from.
+
+        Raises:
+            TypeError: When the loaded object is not a Model.
+
+        Returns:
+            The Model object loaded from the Pickle file.
+        """
+        with Path.open(path, "rb") as stream:
+            model = pickle.load(file=stream)
+
+        if not isinstance(model, cls):
+            raise TypeError("Loaded object is not a Model")
+        return model

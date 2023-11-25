@@ -1,6 +1,3 @@
-import os
-import pickle
-from pathlib import Path
 from typing import Iterable, Self
 
 import numpy as np
@@ -61,38 +58,3 @@ class BaselineModel(Model):
             pl.when(pl.col(self.COUNT_COL).is_infinite()).then(0).otherwise(pl.col(self.COUNT_COL)).keep_name()
         )
         return np.array(data[self.COUNT_COL] / sum(data[self.COUNT_COL]))
-
-    def to_pickle(self: Self, path: Path | os.PathLike | str) -> None:
-        """Store model in a pickle file.
-
-        Saves the object into a pickle file at the given path.
-
-        Args:
-            path: Path to store the model pickle file at.
-        """
-        path.parent.mkdir(parents=True, exist_ok=True)
-
-        with Path.open(path, "wb") as stream:
-            pickle.dump(obj=self, file=stream, protocol=pickle.HIGHEST_PROTOCOL)
-
-    @classmethod
-    def from_pickle(cls, path: Path | os.PathLike | str) -> "BaselineModel":
-        """Load model from Pickle file.
-
-        Loads the object from a Pickle file at the given path.
-
-        Args:
-            path: Path to load the model Pickle file from.
-
-        Raises:
-            TypeError: When the loaded object is not a Model.
-
-        Returns:
-            The Model object loaded from the Pickle file.
-        """
-        with Path.open(path, "rb") as stream:
-            model = pickle.load(file=stream)
-
-        if not isinstance(model, BaselineModel):
-            raise TypeError("Loaded object is not a Model")
-        return model
