@@ -57,7 +57,7 @@ class InferenceJob(AbstractInferenceJob):
 
         mapper = data_preprocessor.extend_mapper_str_keys_with_upper_and_lowercase(mapper=data_preprocessor.MAPPER)
         data_prepped = data_preprocessor.map_values(data=data, mapper=mapper, exclude_cols=[self.context.index_col])
-        return data_preprocessor.limit_data_to_train_set(data=data_prepped)
+        return data_preprocessor.limit_data_to_set(data=data_prepped)
 
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
         """Model training orchestration method of the TrainingJob.
