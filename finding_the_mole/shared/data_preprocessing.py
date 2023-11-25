@@ -16,7 +16,7 @@ class DataPreprocessor:
         """Context dataclass for data preprocessing"""
 
         index_col: str
-        num_episodes: int | str  # TODO: File issue on GitHub that it cannot handle Literal
+        inference_episode: int | str  # TODO: File issue on GitHub that it cannot handle Literal
         tasks_per_episode: int = 3
 
     def __init__(self, context: DataPreprocessor.Context) -> None:
@@ -70,8 +70,8 @@ class DataPreprocessor:
     def limit_data_to_set(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
         """Filters columns in `data` to only keep the task columns to infer for, keeping `self.context.index_col`.
 
-        Using `self.context.tasks_per_episode` and `self.context.num_episodes`, we determine which columns to keep. If
-        `self.context.num_episodes` is `"all"`, we don't need to filter anything.
+        Using `self.context.tasks_per_episode` and `self.context.inference_episode`, we determine which columns to keep. If
+        `self.context.inference_episode` is `"latest"`, we don't need to filter anything.
 
         Args:
             data: Data to filter columns for.
@@ -81,8 +81,8 @@ class DataPreprocessor:
         Returns:
             Data with only the columns of the inference set, including the index column.
         """
-        if self.context.num_episodes == "all":
+        if self.context.inference_episode == "latest":
             return data
 
-        tasks_to_keep = range(1, self.context.num_episodes * self.context.tasks_per_episode + 1)
+        tasks_to_keep = range(1, self.context.inference_episode * self.context.tasks_per_episode + 1)
         return data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
