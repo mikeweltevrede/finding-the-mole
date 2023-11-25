@@ -60,20 +60,16 @@ class InferenceJob(AbstractInferenceJob):
         return data_preprocessor.limit_data_to_set(data=data_prepped)
 
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
-        """Model training orchestration method of the TrainingJob.
-
-        TODO: Store which data it was trained on (which tasks/episodes) so that we can partition the training and
-            inference output based on this.
-        """
+        """Model training orchestration method of the TrainingJob."""
         model = BaselineModel()
+
+        # TODO: Add InferenceEpisode as column to this data; need context for this
         return model.fit(data=data, exclude_cols=[self.context.index_col])
 
     def model_inference(self, **kwargs) -> pl.DataFrame:
-        """Model inference orchestration method of the InferenceJob.
-
-        TODO: Store data, split by which episode this is the inference for. Delta file?
-        """
+        """Model inference orchestration method of the InferenceJob."""
         scores = (model := kwargs["model"]).predict()
+        # TODO: Write data to delta file, partitioning by InferenceEpisode
         return model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
 
 
