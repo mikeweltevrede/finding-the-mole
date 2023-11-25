@@ -53,7 +53,11 @@ class TrainingJob(AbstractTrainingJob):
         return data_preprocessor.limit_data_to_train_set(data=data_prepped)
 
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
-        """Model training orchestration method of the TrainingJob."""
+        """Model training orchestration method of the TrainingJob.
+
+        TODO: Store which data it was trained on (which tasks/episodes) so that we can partition the training and
+            inference output based on this.
+        """
         model = BaselineModel()
         fitted_model = model.fit(data=data, exclude_cols=[self.context.index_col])
         fitted_model.to_pickle(

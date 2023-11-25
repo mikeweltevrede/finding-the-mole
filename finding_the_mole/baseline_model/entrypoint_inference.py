@@ -12,9 +12,11 @@ from finding_the_mole.shared.abstract_model import Model
 
 
 class InferenceJob(AbstractInferenceJob):
+    SCORE_COL = "score"
+
     @dataclass
     class Context(YAMLWizard):
-        """Context dataclass for training job"""
+        """Context dataclass for inference job"""
 
         read_path_models: str
         model_pickle_name: str
@@ -33,7 +35,9 @@ class InferenceJob(AbstractInferenceJob):
         """Main method of the InferenceJob. Orchestrates all other logic."""
         model = self.model_loading()
         results = self.model_inference(model=model)
-        print(results.filter(pl.col("count") != -math.inf).sort("predictions", descending=True))
+
+        # Show the results for all participants that are not eliminated, sorted from highest to lowest score
+        print(results.filter(pl.col("count") != -math.inf).sort(self.SCORE_COL, descending=True))
 
     def model_loading(self) -> Model:
         """Model loading orchestration method of the InferenceJob."""
@@ -42,10 +46,12 @@ class InferenceJob(AbstractInferenceJob):
         )
 
     def model_inference(self, **kwargs) -> pl.DataFrame:
-        """Model inference orchestration method of the InferenceJob."""
-        model = kwargs["model"]
-        preds = model.predict()
-        return model.counts.with_columns(pl.Series(name="predictions", values=preds))
+        """Model inference orchestration method of the InferenceJob.
+
+        TODO: Store data, split by which episode this is the inference for. Delta file?
+        """
+        scores = (model := kwargs["model"]).predict()
+        return model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
 
 
 if __name__ == "__main__":
