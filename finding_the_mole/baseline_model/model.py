@@ -93,6 +93,6 @@ class BaselineModel(Model):
         with Path.open(path, "rb") as stream:
             model = pickle.load(file=stream)
 
-        if not isinstance(model, Model):
+        if not isinstance(model, BaselineModel):
             raise TypeError("Loaded object is not a Model")
         return model
