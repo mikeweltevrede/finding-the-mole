@@ -16,7 +16,7 @@ class DataPreprocessor:
         """Context dataclass for data preprocessing"""
 
         index_col: str
-        num_episodes_to_train_on: int | str  # TODO: File issue on GitHub that it cannot handle Literal
+        num_episodes: int | str  # TODO: File issue on GitHub that it cannot handle Literal
         tasks_per_episode: int = 3
 
     def __init__(self, context: DataPreprocessor.Context) -> None:
@@ -67,21 +67,22 @@ class DataPreprocessor:
             return data.select(*exclude_cols, pl.all().exclude(*exclude_cols).map_dict(mapper))
         return data.select(pl.all().map_dict(mapper))
 
-    def limit_data_to_train_set(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
-        """Filters columns in `data` to only keep the task columns to train on, keeping `self.context.index_col`.
+    def limit_data_to_set(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
+        """Filters columns in `data` to only keep the task columns to infer for, keeping `self.context.index_col`.
 
-        Using `self.context.tasks_per_episode` and `self.context.num_episodes_to_train_on`, we determine which columns
-        to keep. If `self.context.num_episodes_to_train_on` is `"all"`, we don't need to filter anything.
+        Using `self.context.tasks_per_episode` and `self.context.num_episodes`, we determine which columns to keep. If
+        `self.context.num_episodes` is `"all"`, we don't need to filter anything.
 
         Args:
-            data: Data to filter columns to train set for.
+            data: Data to filter columns for.
             prefix_task_cols: Prefix for the task columns. Combined with an integer to determine the column names.
+                Defaults to "Task".
 
         Returns:
-            Data with only the columns of the train set, including the index column.
+            Data with only the columns of the inference set, including the index column.
         """
-        if self.context.num_episodes_to_train_on == "all":
+        if self.context.num_episodes == "all":
             return data
 
-        tasks_to_keep = range(1, self.context.num_episodes_to_train_on * self.context.tasks_per_episode + 1)
+        tasks_to_keep = range(1, self.context.num_episodes * self.context.tasks_per_episode + 1)
         return data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
