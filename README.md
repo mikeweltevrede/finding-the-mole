@@ -21,17 +21,22 @@ I would love to receive your contributions to this learning project. You can con
    pip install poetry
    ```
 
-2. Install the dependencies:
+2. It is recommended to install the virtual environment in the repo itself:
+   ```
+   poetry config virtualenvs.in-project true
+   ```
+
+3. Navigate to the directory and install the project:
    ```
    poetry install
    ```
 
-3. Activate pre-commit hooks:
+4. Activate the virtual environment and then activate pre-commit hooks:
    ```
    pre-commit install
    ```
 
-4. Run the tests to see if the setup process was successful:
+5. Run the tests to see if the setup process was successful:
    ```
    poetry run pytest
    ```
