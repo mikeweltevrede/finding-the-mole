@@ -1,7 +1,9 @@
 read_path: data
 data_file_name: data2022.csv
+write_path: output
+write_output: true
 
 index_col: Name
 
 tasks_per_episode: 3
-num_episodes: all
+inference_episode: latest

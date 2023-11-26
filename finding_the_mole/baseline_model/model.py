@@ -16,7 +16,7 @@ class BaselineModel(Model):
         The predicted score will be the probability of that count compared to the total count.
         """
         Model.__init__(self)
-        self.counts = None
+        self.counts: pl.DataFrame = None
 
     def fit(self: Self, data: pl.DataFrame, exclude_cols: Iterable[str] = None) -> Self:
         """Method to fit model on data.

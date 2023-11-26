@@ -20,9 +20,9 @@ class InferenceJob(AbstractInferenceJob):
         """Context dataclass for inference job"""
 
         read_path: str
+        write_path: str
+        write_output: bool
         data_file_name: str
-        write_path_models: str
-        model_pickle_name: str
         index_col: str
 
     def __init__(self, config_path: str) -> None:
@@ -57,24 +57,30 @@ class InferenceJob(AbstractInferenceJob):
 
         mapper = data_preprocessor.extend_mapper_str_keys_with_upper_and_lowercase(mapper=data_preprocessor.MAPPER)
         data_prepped = data_preprocessor.map_values(data=data, mapper=mapper, exclude_cols=[self.context.index_col])
-        return data_preprocessor.limit_data_to_set(data=data_prepped)
+        data_prepped = data_preprocessor.limit_data_to_set(data=data_prepped)
+        data_prepped = data_preprocessor.add_inference_episode_column(data=data_prepped)
+        return data_preprocessor.put_cols_at_start(
+            data=data_prepped, starting_cols=[self.context.index_col, data_preprocessor.COL_INFERENCE_EPISODE]
+        )
 
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
-        """Model training orchestration method of the TrainingJob.
-
-        TODO: Store which data it was trained on (which tasks/episodes) so that we can partition the training and
-            inference output based on this.
-        """
+        """Model training orchestration method of the TrainingJob."""
         model = BaselineModel()
-        return model.fit(data=data, exclude_cols=[self.context.index_col])
+        return model.fit(data=data, exclude_cols=[self.context.index_col, DataPreprocessor.COL_INFERENCE_EPISODE])
 
     def model_inference(self, **kwargs) -> pl.DataFrame:
-        """Model inference orchestration method of the InferenceJob.
-
-        TODO: Store data, split by which episode this is the inference for. Delta file?
-        """
+        """Model inference orchestration method of the InferenceJob."""
         scores = (model := kwargs["model"]).predict()
-        return model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
+        results = model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
+
+        if self.context.write_output:
+            results.write_delta(
+                target=Path(self.context.write_path) / "Predictions" / model.__class__.__name__,
+                mode="overwrite",
+                delta_write_options=dict(partition_by=DataPreprocessor.COL_INFERENCE_EPISODE),
+            )
+
+        return results
 
 
 if __name__ == "__main__":

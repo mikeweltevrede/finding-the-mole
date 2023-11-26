@@ -1,4 +1,5 @@
 import math
+from unittest import mock
 
 import polars as pl
 import polars.testing as pl_testing
@@ -11,7 +12,7 @@ from finding_the_mole.shared.data_preprocessing import DataPreprocessor
 class TestDataPreprocessor:
     @pytest.fixture()
     def data_preprocessor(self) -> DataPreprocessor:
-        context = DataPreprocessor.Context(index_col="Index", num_episodes="all", tasks_per_episode=3)
+        context = DataPreprocessor.Context(index_col="Index", inference_episode="latest", tasks_per_episode=3)
         return DataPreprocessor(context=context)
 
     def test_extend_mapper_str_keys_with_upper_and_lowercase_retains_existing_key(self):
@@ -60,18 +61,90 @@ class TestDataPreprocessor:
 
         assert_that(actual[0, "Index"]).is_equal_to(index_value)
 
-    def test_limit_data_to_set_with_num_episodes_to_train_on_all_does_not_filter(
+    def test_get_max_episode_gets_correct_maximum_for_episode_1(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(1)
+
+    def test_get_max_episode_gets_correct_maximum_for_episode_2(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task4=1, Task5=1, Task6=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(2)
+
+    def test_get_max_episode_gets_correct_maximum_for_episode_9(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task27=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(9)
+
+    def test_get_max_episode_raises_runtimeerror_when_tasks_per_episode_does_not_divide_largest_task_number(
         self, data_preprocessor: DataPreprocessor
     ):
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        actual = data_preprocessor.limit_data_to_set(data=expected)
+        data_preprocessor.context.tasks_per_episode = 2
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
 
+        with pytest.raises(RuntimeError, match="max_task_int=3 is not divisible by self.context.tasks_per_episode=2"):
+            data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+
+    def test_put_cols_at_start_can_put_one_column_at_the_start(self):
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        expected = pl.DataFrame(data=[dict(Task1=1, Index=1, Task2=0, Task3=1)])
+        actual = DataPreprocessor.put_cols_at_start(data=data, starting_cols=["Task1"])
         pl_testing.assert_frame_equal(actual, expected)
 
-    def test_limit_data_to_set_with_num_episodes_to_train_on_1_and_tasks_per_episode_3_keeps_first_3_task_columns(
+    def test_put_cols_at_start_can_put_two_columns_at_the_start(self):
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        expected = pl.DataFrame(data=[dict(Task1=1, Task3=1, Index=1, Task2=0)])
+        actual = DataPreprocessor.put_cols_at_start(data=data, starting_cols=["Task1", "Task3"])
+        pl_testing.assert_frame_equal(actual, expected)
+
+    @pytest.mark.parametrize("inference_episode", list(range(1, 5)))
+    def test_get_inference_episode_for_non_latest_context_value_inference_episode(
+        self, data_preprocessor: DataPreprocessor, inference_episode: int
+    ):
+        data_preprocessor.context.inference_episode = inference_episode
+        assert_that(data_preprocessor.get_inference_episode(data=None)).is_equal_to(inference_episode)
+
+    def test_get_inference_episode_for_latest_context_value_inference_episode_calls_get_max_episode(
         self, data_preprocessor: DataPreprocessor
     ):
-        data_preprocessor.context.num_episodes = 1
+        data_preprocessor.context.inference_episode = "latest"
+        data_preprocessor._get_max_episode = mock.Mock()
+        data_preprocessor.get_inference_episode(data=pl.DataFrame())
+        data_preprocessor._get_max_episode.assert_called_once()
+
+    def test_get_inference_episode_raises_valueerror_when_data_not_provided_for_latest_context_value_inference_episode(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.inference_episode = "latest"
+
+        with pytest.raises(
+            ValueError, match="Argument data can only be None if self.context.inference_episode is not 'latest'"
+        ):
+            data_preprocessor.get_inference_episode(data=None)
+
+    @pytest.mark.parametrize(("inference_episode", "expected"), [(1, 1), (2, 2), ("latest", 2)])
+    def test_add_inference_episode_column_adds_inference_episode_column_with_correct_value(
+        self, data_preprocessor: DataPreprocessor, inference_episode: int | str, expected: int
+    ):
+        data_preprocessor.context.inference_episode = inference_episode
+        df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        actual = data_preprocessor.add_inference_episode_column(data=df_in)
+        assert_that(actual[0, "InferenceEpisode"]).is_equal_to(expected)
+
+    def test_limit_data_to_set_with_inference_episode_latest_does_not_filter(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.inference_episode = "latest"
+        df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        actual = data_preprocessor.limit_data_to_set(data=df_in)
+
+        pl_testing.assert_frame_equal(actual, df_in)
+
+    def test_limit_data_to_set_with_inference_episode_to_train_on_1_and_tasks_per_episode_3_keeps_first_3_task_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.inference_episode = 1
         data_preprocessor.context.tasks_per_episode = 3
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
@@ -80,10 +153,10 @@ class TestDataPreprocessor:
 
         pl_testing.assert_frame_equal(actual, expected)
 
-    def test_limit_data_to_set_with_num_episodes_to_train_on_1_and_tasks_per_episode_2_keeps_first_2_task_columns(
+    def test_limit_data_to_set_with_inference_episode_to_train_on_1_and_tasks_per_episode_2_keeps_first_2_task_columns(
         self, data_preprocessor: DataPreprocessor
     ):
-        data_preprocessor.context.num_episodes = 1
+        data_preprocessor.context.inference_episode = 1
         data_preprocessor.context.tasks_per_episode = 2
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
@@ -92,10 +165,10 @@ class TestDataPreprocessor:
 
         pl_testing.assert_frame_equal(actual, expected)
 
-    def test_limit_data_to_set_with_num_episodes_to_train_on_2_and_tasks_per_episode_2_keeps_first_4_task_columns(
+    def test_limit_data_to_set_with_inference_episode_to_train_on_2_and_tasks_per_episode_2_keeps_first_4_task_columns(
         self, data_preprocessor: DataPreprocessor
     ):
-        data_preprocessor.context.num_episodes = 2
+        data_preprocessor.context.inference_episode = 2
         data_preprocessor.context.tasks_per_episode = 2
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
@@ -104,10 +177,10 @@ class TestDataPreprocessor:
 
         pl_testing.assert_frame_equal(actual, expected)
 
-    def test_limit_data_to_set_with_num_episodes_to_train_on_2_and_tasks_per_episode_1_keeps_first_2_task_columns(
+    def test_limit_data_to_set_with_inference_episode_to_train_on_2_and_tasks_per_episode_1_keeps_first_2_task_columns(
         self, data_preprocessor: DataPreprocessor
     ):
-        data_preprocessor.context.num_episodes = 2
+        data_preprocessor.context.inference_episode = 2
         data_preprocessor.context.tasks_per_episode = 1
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
@@ -117,7 +190,8 @@ class TestDataPreprocessor:
         pl_testing.assert_frame_equal(actual, expected)
 
     def test_limit_data_to_set_allows_for_custom_prefix_task_cols(self, data_preprocessor: DataPreprocessor):
+        df_in = pl.DataFrame(data=[dict(Index="index", T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
         expected = pl.DataFrame(data=[dict(Index="index", T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
-        actual = data_preprocessor.limit_data_to_set(data=expected, prefix_task_cols="T")
+        actual = data_preprocessor.limit_data_to_set(data=df_in, prefix_task_cols="T")
 
         pl_testing.assert_frame_equal(actual, expected)
