@@ -1,6 +1,7 @@
 read_path: data
 data_file_name: data2022.csv
 write_path: output
+write_output: true
 
 index_col: Name
 

@@ -21,10 +21,9 @@ class InferenceJob(AbstractInferenceJob):
 
         read_path: str
         write_path: str
+        write_output: bool
         data_file_name: str
         index_col: str
-        tasks_per_episode: int
-        inference_episode: str | int
 
     def __init__(self, config_path: str) -> None:
         """Entrypoint to the training job.
@@ -70,12 +69,12 @@ class InferenceJob(AbstractInferenceJob):
         scores = (model := kwargs["model"]).predict()
         results = model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
 
-        # TODO: Write data to delta file, partitioning by InferenceEpisode
-        results.write_delta(
-            target=Path(self.context.write_path) / "Predictions" / "BaselineModel",
-            mode="overwrite",
-            delta_write_options=dict(partition_by=DataPreprocessor.COL_INFERENCE_EPISODE),
-        )
+        if self.context.write_output:
+            results.write_delta(
+                target=Path(self.context.write_path) / "Predictions" / model.__class__.__name__,
+                mode="overwrite",
+                delta_write_options=dict(partition_by=DataPreprocessor.COL_INFERENCE_EPISODE),
+            )
 
         return results
 
