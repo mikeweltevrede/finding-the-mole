@@ -21,9 +21,9 @@ class InferenceJob(AbstractInferenceJob):
 
         read_path: str
         data_file_name: str
-        write_path_models: str
-        model_pickle_name: str
         index_col: str
+        tasks_per_episode: int
+        inference_episode: str | int
 
     def __init__(self, config_path: str) -> None:
         """Entrypoint to the training job.
@@ -62,9 +62,7 @@ class InferenceJob(AbstractInferenceJob):
     def model_training(self, data: pl.DataFrame) -> BaselineModel:
         """Model training orchestration method of the TrainingJob."""
         model = BaselineModel()
-
-        # TODO: Add InferenceEpisode as column to this data; need context for this
-        return model.fit(data=data, exclude_cols=[self.context.index_col])
+        return model.fit(data=data, exclude_cols=[self.context.index_col, DataPreprocessor.COL_INFERENCE_EPISODE])
 
     def model_inference(self, **kwargs) -> pl.DataFrame:
         """Model inference orchestration method of the InferenceJob."""
