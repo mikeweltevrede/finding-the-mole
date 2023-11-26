@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Hashable, Iterable
+from typing import Any, Hashable, Iterable, Optional
 
 import polars as pl
 from dataclass_wizard import YAMLWizard
@@ -111,6 +111,46 @@ class DataPreprocessor:
         """
         return data.select(*starting_cols, pl.exclude(*starting_cols))
 
+    def get_inference_episode(self, data: Optional[pl.DataFrame] = None, prefix_task_cols: str = "Task") -> int:
+        """Get episode to do inference on.
+
+        Determine the episode to do inference on as the context value `inference_episode` is that is not `"latest"` and,
+        otherwise, get the episode from `self._get_max_episode()`.
+
+        Args:
+            data: Data to determine the inference episode for.
+            prefix_task_cols: Prefix for the task columns. Combined with an integer to determine the column names.
+                Defaults to "Task".
+
+        Returns:
+            Episode number used for inference.
+        """
+        if data is None and self.context.inference_episode == "latest":
+            raise ValueError("Argument data can only be None if self.context.inference_episode is not 'latest'")
+
+        return (
+            self.context.inference_episode
+            if self.context.inference_episode != "latest"
+            else self._get_max_episode(data=data, prefix_task_cols=prefix_task_cols)
+        )
+
+    def add_inference_episode_column(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
+        """Add inference episode column.
+
+        Add inference episode column to the data, determined from `self.get_inference_episode()` with name from the
+        class attributes.
+
+        Args:
+            data: Data to add the inference episode column to.
+            prefix_task_cols: Prefix for the task columns. Combined with an integer to determine the column names.
+                Defaults to "Task".
+
+        Returns:
+            Data with the inference episode column added.
+        """
+        inference_episode = self.get_inference_episode(data=data, prefix_task_cols=prefix_task_cols)
+        return data.with_columns(pl.lit(inference_episode).cast(pl.Int64).alias(self.COL_INFERENCE_EPISODE))
+
     def limit_data_to_set(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
         """Filters columns in `data` to only keep the task columns to infer for, keeping `self.context.index_col`.
 
@@ -125,16 +165,11 @@ class DataPreprocessor:
         Returns:
             Data with only the columns of the inference set, including the index column.
         """
-        inference_episode = (
-            self.context.inference_episode
-            if self.context.inference_episode != "latest"
-            else self._get_max_episode(data=data, prefix_task_cols=prefix_task_cols)
-        )
+        inference_episode = self.get_inference_episode(data=data, prefix_task_cols=prefix_task_cols)
 
         if self.context.inference_episode != "latest":
             # For the non-latest episode, we need to only keep the task columns for the desired episode.
             tasks_to_keep = range(1, inference_episode * self.context.tasks_per_episode + 1)
             data = data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
 
-        data = data.with_columns(pl.lit(inference_episode).cast(pl.Int64).alias(self.COL_INFERENCE_EPISODE))
-        return self.put_cols_at_start(data=data, starting_cols=[self.context.index_col, self.COL_INFERENCE_EPISODE])
+        return data
