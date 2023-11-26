@@ -67,10 +67,16 @@ class TestDataPreprocessor:
         assert_that(actual).is_equal_to(1)
 
     def test_get_max_episode_gets_correct_maximum_for_episode_2(self, data_preprocessor: DataPreprocessor):
-        data_preprocessor.context.tasks_per_episode = 2
-        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task4=1)])
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task4=1, Task5=1, Task6=1)])
         actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
         assert_that(actual).is_equal_to(2)
+
+    def test_get_max_episode_gets_correct_maximum_for_episode_9(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task27=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(9)
 
     def test_get_max_episode_raises_runtimeerror_when_tasks_per_episode_does_not_divide_largest_task_number(
         self, data_preprocessor: DataPreprocessor

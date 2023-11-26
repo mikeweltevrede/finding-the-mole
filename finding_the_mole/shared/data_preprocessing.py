@@ -88,9 +88,8 @@ class DataPreprocessor:
         Raises:
             RuntimeError: Raised if the context value `tasks_per_episode` does not divide the largest task number.
         """
-        max_task_col = max([col for col in data.columns if prefix_task_cols in col])
-        max_task_int = int(max_task_col.replace(prefix_task_cols, ""))
-        max_episode = max_task_int / self.context.tasks_per_episode
+        task_nums = [int(col.replace(prefix_task_cols, "")) for col in data.columns if prefix_task_cols in col]
+        max_episode = (max_task_int := max(task_nums)) / self.context.tasks_per_episode
 
         if int(max_episode) != max_episode:
             raise RuntimeError(f"{max_task_int=} is not divisible by {self.context.tasks_per_episode=}")
