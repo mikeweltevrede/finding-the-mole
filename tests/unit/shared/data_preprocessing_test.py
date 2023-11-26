@@ -134,17 +134,12 @@ class TestDataPreprocessor:
         actual = data_preprocessor.add_inference_episode_column(data=df_in)
         assert_that(actual[0, "InferenceEpisode"]).is_equal_to(expected)
 
-    def test_limit_data_to_set_with_inference_episode_latest_does_not_filter_original_columns(
-        self, data_preprocessor: DataPreprocessor
-    ):
+    def test_limit_data_to_set_with_inference_episode_latest_does_not_filter(self, data_preprocessor: DataPreprocessor):
         data_preprocessor.context.inference_episode = "latest"
         df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        expected = pl.DataFrame(
-            data=[dict(Index="index", InferenceEpisode="6", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)]
-        )
         actual = data_preprocessor.limit_data_to_set(data=df_in)
 
-        pl_testing.assert_frame_equal(actual.select(*df_in.columns), expected.select(*df_in.columns))
+        pl_testing.assert_frame_equal(actual, df_in)
 
     def test_limit_data_to_set_with_inference_episode_to_train_on_1_and_tasks_per_episode_3_keeps_first_3_task_columns(
         self, data_preprocessor: DataPreprocessor

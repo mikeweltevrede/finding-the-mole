@@ -167,9 +167,9 @@ class DataPreprocessor:
         """
         inference_episode = self.get_inference_episode(data=data, prefix_task_cols=prefix_task_cols)
 
-        if self.context.inference_episode != "latest":
-            # For the non-latest episode, we need to only keep the task columns for the desired episode.
-            tasks_to_keep = range(1, inference_episode * self.context.tasks_per_episode + 1)
-            data = data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
+        if self.context.inference_episode == "latest":
+            return data
 
-        return data
+        # For the non-latest episode, we need to only keep the task columns for the desired episode.
+        tasks_to_keep = range(1, inference_episode * self.context.tasks_per_episode + 1)
+        return data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
