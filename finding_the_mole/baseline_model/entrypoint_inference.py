@@ -20,6 +20,7 @@ class InferenceJob(AbstractInferenceJob):
         """Context dataclass for inference job"""
 
         read_path: str
+        write_path: str
         data_file_name: str
         index_col: str
         tasks_per_episode: int
@@ -67,8 +68,16 @@ class InferenceJob(AbstractInferenceJob):
     def model_inference(self, **kwargs) -> pl.DataFrame:
         """Model inference orchestration method of the InferenceJob."""
         scores = (model := kwargs["model"]).predict()
+        results = model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
+
         # TODO: Write data to delta file, partitioning by InferenceEpisode
-        return model.counts.with_columns(pl.Series(name=self.SCORE_COL, values=scores))
+        results.write_delta(
+            target=Path(self.context.write_path) / "Predictions" / "BaselineModel",
+            mode="overwrite",
+            delta_write_options=dict(partition_by=DataPreprocessor.COL_INFERENCE_EPISODE),
+        )
+
+        return results
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 read_path: data
 data_file_name: data2022.csv
+write_path: output
 
 index_col: Name
 

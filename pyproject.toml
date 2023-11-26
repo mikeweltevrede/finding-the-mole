@@ -11,6 +11,7 @@ polars = "0.19.12"
 numpy = "1.26.1"
 pyyaml = "6.0.1"
 dataclass-wizard = "0.22.2"
+deltalake = "0.13.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "3.5.0"
