@@ -60,13 +60,68 @@ class TestDataPreprocessor:
 
         assert_that(actual[0, "Index"]).is_equal_to(index_value)
 
-    def test_limit_data_to_set_with_inference_episode_to_train_on_all_does_not_filter(
+    def test_get_max_episode_gets_correct_maximum_for_episode_1(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 3
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(1)
+
+    def test_get_max_episode_gets_correct_maximum_for_episode_2(self, data_preprocessor: DataPreprocessor):
+        data_preprocessor.context.tasks_per_episode = 2
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1, Task4=1)])
+        actual = data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(actual).is_equal_to(2)
+
+    def test_get_max_episode_raises_runtimeerror_when_tasks_per_episode_does_not_divide_largest_task_number(
         self, data_preprocessor: DataPreprocessor
     ):
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        actual = data_preprocessor.limit_data_to_set(data=expected)
+        data_preprocessor.context.tasks_per_episode = 2
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
 
+        with pytest.raises(RuntimeError) as e:
+            data_preprocessor._get_max_episode(data=data, prefix_task_cols="Task")
+        assert_that(str(e.value)).is_equal_to("max_task_int=3 is not divisible by self.context.tasks_per_episode=2")
+
+    def test_put_cols_at_start_can_put_one_column_at_the_start(self):
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        expected = pl.DataFrame(data=[dict(Task1=1, Index=1, Task2=0, Task3=1)])
+        actual = DataPreprocessor.put_cols_at_start(data=data, starting_cols=["Task1"])
         pl_testing.assert_frame_equal(actual, expected)
+
+    def test_put_cols_at_start_can_put_two_columns_at_the_start(self):
+        data = pl.DataFrame(data=[dict(Index=1, Task1=1, Task2=0, Task3=1)])
+        expected = pl.DataFrame(data=[dict(Task1=1, Task3=1, Index=1, Task2=0)])
+        actual = DataPreprocessor.put_cols_at_start(data=data, starting_cols=["Task1", "Task3"])
+        pl_testing.assert_frame_equal(actual, expected)
+
+    def test_limit_data_to_set_with_inference_episode_latest_adds_inference_episode_column(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.inference_episode = "latest"
+        df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        actual = data_preprocessor.limit_data_to_set(data=df_in)
+        assert_that(actual.columns).contains("InferenceEpisode")
+
+    @pytest.mark.parametrize(("inference_episode", "expected"), [(1, 1), (2, 2), ("latest", 2)])
+    def test_limit_data_to_set_adds_inference_episode_column_with_correct_value(
+        self, data_preprocessor: DataPreprocessor, inference_episode: int | str, expected: int
+    ):
+        data_preprocessor.context.inference_episode = inference_episode
+        df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        actual = data_preprocessor.limit_data_to_set(data=df_in)
+        assert_that(actual[0, "InferenceEpisode"]).is_equal_to(expected)
+
+    def test_limit_data_to_set_with_inference_episode_latest_does_not_filter_original_columns(
+        self, data_preprocessor: DataPreprocessor
+    ):
+        data_preprocessor.context.inference_episode = "latest"
+        df_in = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
+        expected = pl.DataFrame(
+            data=[dict(Index="index", InferenceEpisode="6", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)]
+        )
+        actual = data_preprocessor.limit_data_to_set(data=df_in)
+
+        pl_testing.assert_frame_equal(actual.select(*df_in.columns), expected.select(*df_in.columns))
 
     def test_limit_data_to_set_with_inference_episode_to_train_on_1_and_tasks_per_episode_3_keeps_first_3_task_columns(
         self, data_preprocessor: DataPreprocessor
@@ -75,7 +130,7 @@ class TestDataPreprocessor:
         data_preprocessor.context.tasks_per_episode = 3
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1)])
+        expected = pl.DataFrame(data=[dict(Index="index", InferenceEpisode=1, Task1=1, Task2=0, Task3=1)])
         actual = data_preprocessor.limit_data_to_set(data=data)
 
         pl_testing.assert_frame_equal(actual, expected)
@@ -87,7 +142,7 @@ class TestDataPreprocessor:
         data_preprocessor.context.tasks_per_episode = 2
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", InferenceEpisode=1, Task1=1, Task2=0)])
         actual = data_preprocessor.limit_data_to_set(data=data)
 
         pl_testing.assert_frame_equal(actual, expected)
@@ -99,7 +154,7 @@ class TestDataPreprocessor:
         data_preprocessor.context.tasks_per_episode = 2
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1)])
+        expected = pl.DataFrame(data=[dict(Index="index", InferenceEpisode=2, Task1=1, Task2=0, Task3=1, Task4=1)])
         actual = data_preprocessor.limit_data_to_set(data=data)
 
         pl_testing.assert_frame_equal(actual, expected)
@@ -111,13 +166,14 @@ class TestDataPreprocessor:
         data_preprocessor.context.tasks_per_episode = 1
 
         data = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0, Task3=1, Task4=1, Task5=0, Task6=0)])
-        expected = pl.DataFrame(data=[dict(Index="index", Task1=1, Task2=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", InferenceEpisode=2, Task1=1, Task2=0)])
         actual = data_preprocessor.limit_data_to_set(data=data)
 
         pl_testing.assert_frame_equal(actual, expected)
 
     def test_limit_data_to_set_allows_for_custom_prefix_task_cols(self, data_preprocessor: DataPreprocessor):
-        expected = pl.DataFrame(data=[dict(Index="index", T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
-        actual = data_preprocessor.limit_data_to_set(data=expected, prefix_task_cols="T")
+        df_in = pl.DataFrame(data=[dict(Index="index", T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
+        expected = pl.DataFrame(data=[dict(Index="index", InferenceEpisode=2, T1=1, T2=0, T3=1, T4=1, T5=0, T6=0)])
+        actual = data_preprocessor.limit_data_to_set(data=df_in, prefix_task_cols="T")
 
         pl_testing.assert_frame_equal(actual, expected)

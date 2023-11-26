@@ -67,6 +67,50 @@ class DataPreprocessor:
             return data.select(*exclude_cols, pl.all().exclude(*exclude_cols).map_dict(mapper))
         return data.select(pl.all().map_dict(mapper))
 
+    def _get_max_episode(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> int:
+        """Get maximum episode in the data.
+
+        The maximum episode is determined by considering the task columns, i.e. those prefixed with `prefix_task_cols`.
+        By looking at the largest number that comes after `prefix_task_cols`, we can determine how many tasks are in the
+        data. Then, looking at the context value `tasks_per_episode`, we determine how many episodes were played. If the
+        `tasks_per_episode` does not divide the largest task number, an exception is raised as this is a data quality
+        issue.
+
+        Args:
+            data: Data to determine the maximum episode for.
+            prefix_task_cols: Prefix for the task columns. Combined with an integer to determine the column names.
+                Defaults to "Task".
+
+        Returns:
+            Maximum episode number in the data.
+
+        Raises:
+            RuntimeError: Raised if the context value `tasks_per_episode` does not divide the largest task number.
+        """
+        max_task_col = max([col for col in data.columns if prefix_task_cols in col])
+        max_task_int = int(max_task_col.replace(prefix_task_cols, ""))
+        max_episode = max_task_int / self.context.tasks_per_episode
+
+        if int(max_episode) != max_episode:
+            raise RuntimeError(f"{max_task_int=} is not divisible by {self.context.tasks_per_episode=}")
+        return int(max_episode)
+
+    @classmethod
+    def put_cols_at_start(cls, data: pl.DataFrame, starting_cols: list[str]) -> pl.DataFrame:
+        """Put certain columns at the start of the DataFrame.
+
+        Put `starting_cols` in the provided order at the start of the DataFrame. Other columns are kept in the same
+        order.
+
+        Args:
+            data: Data to reorder.
+            starting_cols: Columns (ordered) to put at the start of the DataFrame.
+
+        Returns:
+            DataFrame with provided columns at the start.
+        """
+        return data.select(*starting_cols, pl.exclude(*starting_cols))
+
     def limit_data_to_set(self, data: pl.DataFrame, prefix_task_cols: str = "Task") -> pl.DataFrame:
         """Filters columns in `data` to only keep the task columns to infer for, keeping `self.context.index_col`.
 
@@ -82,7 +126,11 @@ class DataPreprocessor:
             Data with only the columns of the inference set, including the index column.
         """
         if self.context.inference_episode == "latest":
-            return data
+            max_episode = self._get_max_episode(data=data, prefix_task_cols=prefix_task_cols)
+            data = data.with_columns(InferenceEpisode=pl.lit(max_episode).cast(pl.Int64))
+            return self.put_cols_at_start(data=data, starting_cols=[self.context.index_col, "InferenceEpisode"])
 
         tasks_to_keep = range(1, self.context.inference_episode * self.context.tasks_per_episode + 1)
-        return data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
+        data = data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
+        data = data.with_columns(InferenceEpisode=pl.lit(self.context.inference_episode).cast(pl.Int64))
+        return self.put_cols_at_start(data=data, starting_cols=[self.context.index_col, "InferenceEpisode"])
