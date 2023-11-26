@@ -126,14 +126,16 @@ class DataPreprocessor:
         Returns:
             Data with only the columns of the inference set, including the index column.
         """
-        if self.context.inference_episode == "latest":
-            max_episode = self._get_max_episode(data=data, prefix_task_cols=prefix_task_cols)
-            data = data.with_columns(pl.lit(max_episode).cast(pl.Int64).alias(self.COL_INFERENCE_EPISODE))
-            return self.put_cols_at_start(data=data, starting_cols=[self.context.index_col, self.COL_INFERENCE_EPISODE])
-
-        tasks_to_keep = range(1, self.context.inference_episode * self.context.tasks_per_episode + 1)
-        data = data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
-        data = data.with_columns(
-            pl.lit(self.context.inference_episode).cast(pl.Int64).alias(self.COL_INFERENCE_EPISODE)
+        inference_episode = (
+            self.context.inference_episode
+            if self.context.inference_episode != "latest"
+            else self._get_max_episode(data=data, prefix_task_cols=prefix_task_cols)
         )
+
+        if self.context.inference_episode != "latest":
+            # For the non-latest episode, we need to only keep the task columns for the desired episode.
+            tasks_to_keep = range(1, inference_episode * self.context.tasks_per_episode + 1)
+            data = data.select(self.context.index_col, *(f"{prefix_task_cols}{num}" for num in tasks_to_keep))
+
+        data = data.with_columns(pl.lit(inference_episode).cast(pl.Int64).alias(self.COL_INFERENCE_EPISODE))
         return self.put_cols_at_start(data=data, starting_cols=[self.context.index_col, self.COL_INFERENCE_EPISODE])
