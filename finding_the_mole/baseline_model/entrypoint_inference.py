@@ -43,7 +43,9 @@ class InferenceJob(AbstractInferenceJob):
         results = self.model_inference(model=model)
 
         # Show the results for all participants that are not eliminated, sorted from highest to lowest score
-        print(results.filter(pl.col("count") != -math.inf).sort(self.SCORE_COL, descending=True))
+        with pl.Config() as cfg:
+            cfg.set_tbl_rows(len(results))  # Make sure to print all rows
+            print(results.filter(pl.col("count") != -math.inf).sort(self.SCORE_COL, descending=True))
 
     def data_extraction(self) -> pl.DataFrame:
         """Data extraction orchestration method of the TrainingJob."""
