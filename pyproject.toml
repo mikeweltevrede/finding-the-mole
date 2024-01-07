@@ -6,7 +6,7 @@ authors = ["Mike Weltevrede <46759318+mikeweltevrede@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.12"
+python = ">=3.12,<3.13"
 polars = "0.19.12"
 numpy = "1.26.1"
 pyyaml = "6.0.1"
