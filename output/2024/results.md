@@ -47,6 +47,12 @@ would want to be a Finder:
   that they tried it.
 
 ## Episode 2
+The ranking of the Baseline Model is:
+1. Anna: 26.67% (4 points)
+2. Fons: 20.00% (3 points)
+3. Jip, Justin, Kees: 13.33% (2 points)
+4. Rosario, Tooske: 6.67% (1 point)
+5. Jeroen, Rian: 0.00% (0 points)
 
 ### Task 1
 Groups:
