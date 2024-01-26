@@ -91,3 +91,46 @@ have more control over whether money would be earned, simply by answering questi
 ### Task 3
 There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
 in the current implementation that there is an equal number of tasks in each episode.
+
+## Episode 3
+The ranking of the Baseline Model is:
+1. Anna: 23.53% (4 points)
+2. Fons, Kees: 17.65% (3 points)
+3. Justin, Rosario, Tooske: 11.76% (2 points)
+4. Rian: 5.88% (1 point)
+5. Jeroen: 0.00% (0 points)
+
+### Task 1
+The participants were in a cantina where they would be playing in a pubquiz. They would pay a pre-determined amount of
+money to be able to answer two questions about a song played by a mariachi band. For every question answered correctly,
+they would get the amount paid, therefore losing money if they answered neither correctly, winning money if they
+answered both correctly, and have no profit otherwise.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 2
+The participants had to walk the streets to find tables with statements about themselves. The two people that these
+statements applied to, had to join at the table and then choose from two cities which lies the farthest from Amsterdam.
+The answer to that question, would have to be entered into a puzzle at the end.
+
+Once again, although there are definitely actions the Mole could take in this task, there was no unequal division of
+groups in some sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+Groups:
+- Arena: Kees, Rian, Rosario, Tooske
+- Streets: Anna, Jeroen
+- Hotel room: Fons, Justin
+
+This task related to wrestling, The participants were spread over three locations with specific tasks attached:
+1. Arena: the participants in the arena, had to take selfies with each of the wrestlers. They could only take one selfie
+   per wrestler and the selfie could not contain other wrestlers.
+2. Streets: the participants out in the streets had to get descriptions of wrestlers from locals and then had to draw
+   pictures of them.
+3. Hotel room: the participants in the hotel room would receive the selfies and drawings from the other two groups and
+   had to link them together so that you would have a drawing of a wrestler with four selfies with that wrestler.
+
+Although the people in the hotel room make the final decision about how to link the drawings and selfies, I would argue
+that the arena is the most powerful position for the Mole to be in. They can easily invalidate an entire option to earn
+money by sending in multiple selfies per wrestler, making vague photos, or having multiple wrestlers on the same photo.
