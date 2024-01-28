@@ -134,3 +134,35 @@ This task related to wrestling, The participants were spread over three location
 Although the people in the hotel room make the final decision about how to link the drawings and selfies, I would argue
 that the arena is the most powerful position for the Mole to be in. They can easily invalidate an entire option to earn
 money by sending in multiple selfies per wrestler, making vague photos, or having multiple wrestlers on the same photo.
+
+## Episode 4
+
+### Task 1
+Groups:
+- Cyclists: Fons, Kees, Rosario, Tooske
+- Shoppers: Anna, Jeroen, Rian
+
+The participants were divided into Cyclists and Shoppers. The host of the show bought several artifacts at the antique
+market for 250 euros. The Shoppers had to purchase artifacts so that the Cyclists would, at the end, value their set of
+items higher than the one the host bought. The Shoppers initially had 100 euros but could receive more money due to
+actions from the Cyclists. These would be offered phone calls where they could earn money for the Shoppers. They could
+also earn jokers* for some phone calls. All in all, the longer they called, the less money they would win per correctly
+chosen artifact at the end of the task.
+
+I think the Mole would want to be a Cyclist. Not only would they be able to call for a long time to reduce the amount of
+money earned per item by either calling longer or going for jokers instead of money, but they also made the final choice
+of which item was bought by the Shoppers. The Shoppers had control in the task by buying stuff that looked cheap but
+they generally stuck together. Moreover, they did not have much control in the final choices.
+
+\* A joker is an item which would render a wrong answer at the elimination test as correct.
+
+### Task 2
+The participants were divided into two groups. Within each group, they had to solve puzzles and play games. Upon a
+successful solve, they would earn money. If the solution was wrong, they would lose money.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
+in the current implementation that there is an equal number of tasks in each episode.
