@@ -24,20 +24,14 @@ This is done due to still learning about how to code Bayesian models. In the fut
 gained knowledge about the topic.
 
 The model would look like:
-```math
-Y \sim N(\mu, \sigma^2)
-
-\mu = \alpha + \sum_{t} \beta_t m_t
-```
+$$Y \sim N(\mu, \sigma^2)$$
+$$\mu = \alpha + \sum_{t} \beta_t m_t$$
 
 And for the priors, we choose:
-```math
-\alpha \sim N(0, 100)
+$$\alpha \sim N(0, 100)$$
+$$\beta_t \sim N(0, 100)$$
+$$\sigma \sim |N(0,1)|$$
 
-\beta_t \sim N(0, 100)
-
-\sigma \sim |N(0,1)|
-```
 
 # Footnotes
 <sup>1</sup> Martin Osvaldo A, Kumar Ravin, Lao Junpeng; Bayesian Modeling and Computation in Python; Boca Ratón, 2021.
