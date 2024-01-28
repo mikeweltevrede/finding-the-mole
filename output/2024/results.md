@@ -136,6 +136,11 @@ that the arena is the most powerful position for the Mole to be in. They can eas
 money by sending in multiple selfies per wrestler, making vague photos, or having multiple wrestlers on the same photo.
 
 ## Episode 4
+The ranking of the Baseline Model is:
+1. Anna, Fons, Kees: 21.05% (4 points)
+2. Rosario, Tooske: 15.79% (3 points)
+3. Rian: 5.26% (1 point)
+4. Jeroen: 0.00% (0 points)
 
 ### Task 1
 Groups:
