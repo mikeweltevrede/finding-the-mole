@@ -33,7 +33,7 @@ And for the priors, we choose:
 ```math
 \alpha \sim N(0, 100)\
 \beta_t \sim N(0, 100)\
-\sigma \sim |N(0,100)|
+\sigma \sim |N(0,1)|
 ```
 
 # Footnotes
