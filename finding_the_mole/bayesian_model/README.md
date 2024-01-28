@@ -25,15 +25,15 @@ gained knowledge about the topic.
 
 The model would look like:
 ```math
-Y \tilde \mathcal{N}(\mu, \sigma^2)
+Y \tilde N(\mu, \sigma^2)
 \mu = \alpha + \sum_{t} \beta_t m_t
 ```
 
 And for the priors, we choose:
 ```math
-\alpha \tilde \mathcal{N}(0, 100)
-\beta_t \tilde \mathcal{N}(0, 100)
-\sigma \tilde |\mathcal{N}(0,100)|
+\alpha \tilde N(0, 100)
+\beta_t \tilde N(0, 100)
+\sigma \tilde |N(0,100)|
 ```
 
 # Footnotes
