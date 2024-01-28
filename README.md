@@ -157,6 +157,9 @@ triggers in your repo rather than having to activate the pipeline in a separate 
 ### Bayesian modelling in Python
 **Inspiration: [CodeErik](https://www.codeerik.nl/widm-2023-op-zoek-naar-de-mol-met-data-analyse/)**
 
+For more information on my Bayesian model, see
+[finding_the_mole/bayesian_model/README.md](finding_the_mole/bayesian_model/README.md).
+
 ### Other learnings from this project
 #### Pre-commit hooks with public repo access
 I am already familiar with pre-commit hooks. At work, we use them to maintain code quality in many different ways.
