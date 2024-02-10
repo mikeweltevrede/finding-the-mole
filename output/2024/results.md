@@ -213,3 +213,17 @@ to receive a hint as to where they had to go.
 
 Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
 sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+The participants had to choose one of several envelopes. At the start, these all contained money. However, at the start,
+they were given a choice of whether they wanted to add one or more jokers or topito* to the envelopes. If they chose to
+do so (which everyone did in one form or the other), they also had to pick a certain number of envelopes which would
+contain "negative" money, i.e. when picked, that money would be deducted from the pot.
+
+Of course, the Mole would want to get many envelopes with negative money added. However, I do not think that it is
+directly obvious that they would always choose for the topito or three jokers. Otherwise, I would have defined the Mole
+group as those people selecting those. Moreover, there was no unequal division of groups in some sort of way. As such, I
+omit this task from the analysis.
+
+\* If you won a topito in this task, it meant that you had to find three others who also won a topito so that all of you
+would get an exemption.
