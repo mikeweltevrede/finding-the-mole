@@ -171,3 +171,37 @@ sort of way. As such, I omit this task from the analysis.
 ### Task 3
 There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
 in the current implementation that there is an equal number of tasks in each episode.
+
+## Episode 5
+Important: in this episode, one of the currently three eliminated participants could return to the game. This turned out
+to be Babs. However, I think there is no way she can be the Mole. There was no way that she would have been able to
+force her return due to the method in which this was set up. Moreover, I see no reason why the Mole would want to be
+eliminated and miss out on being able to sabotage tasks. As such, I will not take Babs into account in further analyses.
+
+### Task 1
+Groups:
+- Flags: Fons, Jeroen
+- Carts: Anna, Babs, Kees, Rian, Rosario, Tooske
+
+The participants were asked to make duos, after which one of these had to volunteer to take on an "important role".
+This was the duo of Fons and Jeroen. The other duos were being driven around and had to look out for signposts where on
+one side it would show some amount of Euros and on the other side a colour. Fons and Jeroen received a hint for the final
+solution (a series of numbers) and then were sent off to a location where there were many coloured flags. It turned out
+they had to count the flags per colour and select the colours of which the counts matched the numbers in the series they
+were given. Adding up all amounts found by the other duos for those colours would lead to the amount of money they could
+win in this task.
+
+It is not immediately clear where the Mole would want to be. The Mole could want to count the flags so that a single
+miscount could lead to a wrong colour being selected, already invalidating the result before the addition of the amounts
+had started. There would only be one person checking you and with the limit time and the hectic nature of the task, it
+might not be dangerous to sabotage here. If the Mole would be in one of the carts, there would also be only one other
+person checking them. They could try to name a wrong colour or amount, or just fail to announce that a signpost would be
+coming up, hoping that the other person would miss it or only see the back, at which point it would already be too late.
+However, judging from the episode, that would be much easier to check.
+
+Based on this, I would say the Mole might have a slight preference for the Flags duo.
+- NB: At the end of the episode, Jeroen was eliminated. This means that this only gives a point to Fons. However, note
+    that the input data should not take something like this into account. It should reflect a view only on where the
+    Mole would want to be for each task. Moreover, in the other case it would also not add much information since it
+    only would NOT give a point to Fons. In either case, the added value of this task to the model is probably not much
+    but not little enough to justify omitting this task.
