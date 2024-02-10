@@ -178,6 +178,12 @@ to be Babs. However, I think there is no way she can be the Mole. There was no w
 force her return due to the method in which this was set up. Moreover, I see no reason why the Mole would want to be
 eliminated and miss out on being able to sabotage tasks. As such, I will not take Babs into account in further analyses.
 
+The ranking of the Baseline Model is:
+1. Fons: 23.81% (5 points)
+2. Anna, Kees: 19.05% (4 points)
+3. Rosario, Tooske: 14.29% (3 points)
+4. Jeroen, Rian: 4.76% (1 point)
+
 ### Task 1
 Groups:
 - Flags: Fons, Jeroen
