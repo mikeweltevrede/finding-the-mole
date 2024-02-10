@@ -205,3 +205,11 @@ Based on this, I would say the Mole might have a slight preference for the Flags
     Mole would want to be for each task. Moreover, in the other case it would also not add much information since it
     only would NOT give a point to Fons. In either case, the added value of this task to the model is probably not much
     but not little enough to justify omitting this task.
+
+### Task 2
+The participants had to strike down piñatas which had words with blanks on them where the word "mol" would fit. They
+would receive a call with a description of one of these words and then had to find the corresponding piñata and open it
+to receive a hint as to where they had to go.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
