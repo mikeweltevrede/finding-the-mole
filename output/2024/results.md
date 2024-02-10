@@ -171,3 +171,65 @@ sort of way. As such, I omit this task from the analysis.
 ### Task 3
 There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
 in the current implementation that there is an equal number of tasks in each episode.
+
+## Episode 5
+Important: in this episode, one of the currently three eliminated participants could return to the game. This turned out
+to be Babs. However, I think there is no way she can be the Mole. There was no way that she would have been able to
+force her return due to the method in which this was set up. Moreover, I see no reason why the Mole would want to be
+eliminated and miss out on being able to sabotage tasks. As such, I will not take Babs into account in further analyses.
+
+The ranking of the Baseline Model is:
+1. Fons: 23.81% (5 points)
+2. Anna, Kees: 19.05% (4 points)
+3. Rosario, Tooske: 14.29% (3 points)
+4. Jeroen, Rian: 4.76% (1 point)
+
+### Task 1
+Groups:
+- Flags: Fons, Jeroen
+- Carts: Anna, Babs, Kees, Rian, Rosario, Tooske
+
+The participants were asked to make duos, after which one of these had to volunteer to take on an "important role".
+This was the duo of Fons and Jeroen. The other duos were being driven around and had to look out for signposts where on
+one side it would show some amount of Euros and on the other side a colour. Fons and Jeroen received a hint for the final
+solution (a series of numbers) and then were sent off to a location where there were many coloured flags. It turned out
+they had to count the flags per colour and select the colours of which the counts matched the numbers in the series they
+were given. Adding up all amounts found by the other duos for those colours would lead to the amount of money they could
+win in this task.
+
+It is not immediately clear where the Mole would want to be. The Mole could want to count the flags so that a single
+miscount could lead to a wrong colour being selected, already invalidating the result before the addition of the amounts
+had started. There would only be one person checking you and with the limit time and the hectic nature of the task, it
+might not be dangerous to sabotage here. If the Mole would be in one of the carts, there would also be only one other
+person checking them. They could try to name a wrong colour or amount, or just fail to announce that a signpost would be
+coming up, hoping that the other person would miss it or only see the back, at which point it would already be too late.
+However, judging from the episode, that would be much easier to check.
+
+Based on this, I would say the Mole might have a slight preference for the Flags duo.
+- NB: At the end of the episode, Jeroen was eliminated. This means that this only gives a point to Fons. However, note
+    that the input data should not take something like this into account. It should reflect a view only on where the
+    Mole would want to be for each task. Moreover, in the other case it would also not add much information since it
+    only would NOT give a point to Fons. In either case, the added value of this task to the model is probably not much
+    but not little enough to justify omitting this task.
+
+### Task 2
+The participants had to strike down piñatas which had words with blanks on them where the word "mol" would fit. They
+would receive a call with a description of one of these words and then had to find the corresponding piñata and open it
+to receive a hint as to where they had to go.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+The participants had to choose one of several envelopes. At the start, these all contained money. However, at the start,
+they were given a choice of whether they wanted to add one or more jokers or topito* to the envelopes. If they chose to
+do so (which everyone did in one form or the other), they also had to pick a certain number of envelopes which would
+contain "negative" money, i.e. when picked, that money would be deducted from the pot.
+
+Of course, the Mole would want to get many envelopes with negative money added. However, I do not think that it is
+directly obvious that they would always choose for the topito or three jokers. Otherwise, I would have defined the Mole
+group as those people selecting those. Moreover, there was no unequal division of groups in some sort of way. As such, I
+omit this task from the analysis.
+
+\* If you won a topito in this task, it meant that you had to find three others who also won a topito so that all of you
+would get an exemption.
