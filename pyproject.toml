@@ -63,6 +63,10 @@ allow-dict-calls-with-keyword-arguments = true
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+# deltalake is used in the background to be able to write to a delta file
+[tool.deptry.per_rule_ignores]
+DEP002 = ["deltalake"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
