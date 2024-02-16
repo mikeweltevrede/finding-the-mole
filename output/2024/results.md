@@ -235,6 +235,11 @@ omit this task from the analysis.
 would get an exemption.
 
 ## Episode 6
+The ranking of the Baseline Model is:
+1. Fons: 25.00% (5 points)
+2. Anna, Kees: 20.00% (4 points)
+3. Rosario, Tooske: 15.00% (3 points)
+4. Rian: 5.00% (1 point)
 
 ### Task 1
 The participants were instructed on the Mayan way of counting. Then, they had to collect stones with Mayan numbers on
