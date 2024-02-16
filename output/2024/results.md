@@ -233,3 +233,29 @@ omit this task from the analysis.
 
 \* If you won a topito in this task, it meant that you had to find three others who also won a topito so that all of you
 would get an exemption.
+
+## Episode 6
+
+### Task 1
+The participants were instructed on the Mayan way of counting. Then, they had to collect stones with Mayan numbers on
+them that added up to a specific number which was depicted on a table.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 2
+The participants watched several traditional dances from Mexico. During the one from Yucatán, they were given
+instructions on which people they had to remove from the group (e.g. all women with a black or white fan). These
+instructions were given to one person, after which the participants had to whisper them to one another like the
+Telephone Game. At the end, five dancers would be left and the participants would earn money per correct dancer.
+
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+The participants did this task en route to making their test. They were told that in the test, they would only be shown
+the answers to the questions. While walking to the laptop, they would encounter the questions, which they had to
+remember.
+
+There was no opportunity to earn money in this task. Moreover, there was no unequal division of groups in some sort of
+way. As such, I omit this task from the analysis.
