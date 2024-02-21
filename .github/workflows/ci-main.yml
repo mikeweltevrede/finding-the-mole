@@ -1,13 +1,14 @@
-name: ci
+name: ci-main
 
 on:
-  pull_request:
+  push:
     branches: [main]
-    types: [opened,synchronize,reopened]
 
 jobs:
   quality-checks:
     uses: ./.github/workflows/quality-checks.yml
+    with:
+      pre-commit-skip: 'SKIP=no-commit-to-branch'
 
   test:
     uses: ./.github/workflows/unit-and-doc-tests.yml
