@@ -2,9 +2,12 @@
 name: ci
 
 on:
-  pull_request:
-    branches: [main]
-    types: [opened,synchronize,reopened]
+  # TODO: Switch to main/closed
+  push:
+    branches: ["**"]
+#  pull_request:
+#    branches: [main]
+#    types: [closed]
 
 jobs:
   quality:
@@ -22,7 +25,7 @@ jobs:
         uses: ./.github/actions/setup-poetry-env
 
       - name: Run pre-commit
-        run: poetry run pre-commit run -a --show-diff-on-failure
+        run: poetry run SKIP=no-commit-to-branch pre-commit run -a --show-diff-on-failure
 
   test:
     runs-on: ubuntu-latest
