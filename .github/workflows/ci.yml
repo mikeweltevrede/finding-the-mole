@@ -1,9 +1,11 @@
 name: ci
 
 on:
-  pull_request:
-    branches: [main]
-    types: [opened,synchronize,reopened]
+  push:
+    branches: ["**"]
+#  pull_request:
+#    branches: [main]
+#    types: [opened,synchronize,reopened]
 
 jobs:
   quality-checks:
