@@ -1,5 +1,5 @@
 # Inspiration: https://github.com/fpgmaas/deptry
-name: ci
+name: ci-main
 
 on:
   # TODO: Switch to main/closed
