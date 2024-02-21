@@ -264,3 +264,54 @@ remember.
 
 There was no opportunity to earn money in this task. Moreover, there was no unequal division of groups in some sort of
 way. As such, I omit this task from the analysis.
+
+## Episode 7
+
+### Task 1
+The participants had to do several small tasks related to music, e.g. linking musical terms to their meaning and
+Pictionary with song titles. For each correctly executed task, money would be earned.
+
+At first, I was not sure if there was some sort of way in which I could determine a Mole group, e.g. the tasks that did
+not earn money. However, there was no structure there and for some tasks they swapped the groups throughout. As such,
+although there are definitely actions the Mole could take in this task, I omit this task from the analysis.
+
+### Task 2
+Waiters: Kees, Rosario
+Drivers: Anna, Babs, Fons, Rian
+
+The participants had to pick up several people who had booked a table at a brunch. At the end, they had to put these
+people in a line, ordering them alphabetically by their first name. They would gain money per person as long as the line
+was still in alphabetical order. So, that means that even though there is a mistake, the line could still be in order.
+For instance, consider the line of people with names Angela, Betty, Charlie, Carl, etcetera. Even though Carl should
+have been placed before Charlie, the first three people are still in alphabetical order. In this case, the participants
+would receive the amount of money for three correct answers.
+
+The participants were divided into two groups: four people would drive around the town to pick up the guests and bring
+them to the restaurant (Drivers). The other two people would be at the restaurant as Waiters from the get-go, receiving
+the guests when they were dropped off. The drivers would join the latter two as Waiters when time was up.
+
+I do not really see any benefit for the Mole to want to be a Waiter from the get-go. If they were a driver, they could
+execute several strategies. For example, they could pick up many people which would increase the probability of messing
+up the alphabetical order (either due to the large number of people by itself or because they could claim someone's name
+is Carlos while it was Charlie). They could also choose to skip picking up guests; the Mole might know where the guests
+are waiting, or they would just spot the guests and drive past them. Another option would be to stall and just drive
+around leisurely. As such, I assume the Mole would want to be a Driver.
+
+### Task 3
+Looked: Fons, Rosario
+Did not look: Anna, Babs, Kees, Rian
+
+The participants were called into a private room one-by-one. They were offered the opportunity to take a look at ten
+questions that would be on the test in the finals. This would cost them 500 euros. If no one looked, they would earn
+3,000 euros. If they themselves did not look, they were told that "integrity would be rewarded". After everyone made
+their choice, those that did not look were informed that they could bid on an exemption for that episode's elimination.
+They would have to mention a bid as well as a person whom they suspected did look. If that was correct, the amount bid
+would be deducted from the group pot.
+
+Especially since it would not be revealed who looked, except for the person indicated by the highest bidder, there was
+little reason for the Mole to look. They gain nothing from the information and the only reason would be to guarantee the
+3,000 euros would not be earned. However, it is generally safe to assume that at least one person would look, so you can
+take the risk. If you do not look, and you bid at least 500 euros, you already have a high chance that you remove more
+money from the pot that if you did look; either you will remove this amount or someone who bid higher. If it turns out
+that the person that was suspected from having looked actually did not look, this was only a small gamble to make for
+the Mole. As such, I suspect the Mole to not have looked.
