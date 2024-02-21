@@ -1,4 +1,4 @@
-# Inspiration: https://github.com/snok/install-poetry
+# Inspiration: https://github.com/fpgmaas/deptry
 name: ci
 
 on:
