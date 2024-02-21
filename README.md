@@ -84,12 +84,13 @@ I started my learning journey by watching YouTube videos. I noticed that many we
 since `poetry` has been around since February 2018. The one I mainly used is
 [How to Create and Use Virtual Environments in Python With Poetry](https://www.youtube.com/watch?v=0f3moPe_bhk) by [ArjanCodes](https://www.arjancodes.com).
 
+#### Setting up my project
 Of course, I had to start with setting up my project with `poetry`. I noticed that it was easier to start locally and
 create my project folder with `poetry new` and then running `git init`, rather than cloning an already initialized
 GitHub repo from the website and calling `poetry init`.
 
+#### poetry.lock file
 Secondly, I was wondering about the `poetry.lock` file and whether I should commit it. The [official website says](https://python-poetry.org/docs/basic-usage/#:~:text=You%20should%20commit%20the%20poetry.lock%20file%20to%20your%20project%20repo%20so%20that%20all%20people%20working%20on%20the%20project%20are%20locked%20to%20the%20same%20versions%20of%20dependencies):
-
 > When Poetry has finished installing, it writes all the packages and their exact versions that it downloaded to the
 > poetry.lock file, locking the project to those specific versions. You should commit the poetry.lock file to your
 > project repo so that all people working on the project are locked to the same versions of dependencies.
@@ -104,6 +105,7 @@ lock file. I also read [the following comment by Arne on StackOverflow](https://
 > choice, because it occurs quite often that someone's build is not working and the solution is to delete and re-build
 > the lockfile, after which all of us end up having merge conflicts.
 
+#### Exact requirements
 In the end, I saw in the documentation that it was possible to specify [exact requirements](https://python-poetry.org/docs/dependency-specification/#exact-requirements) in the `pyproject.toml`
 file. This had my preference, so I removed the caret notation and specified specific versions. The only annoying thing
 about this is that you have to either:
