@@ -9,16 +9,35 @@ on:
     types: [closed]
 
 jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-poetry-env
+
+      - name: Run pre-commit
+        run: poetry run pre-commit run -a --show-diff-on-failure
+
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+
       - name: Set up Python
         id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
