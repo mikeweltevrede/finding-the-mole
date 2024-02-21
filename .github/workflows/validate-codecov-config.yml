@@ -1,0 +1,16 @@
+# Inspiration: https://github.com/fpgmaas/deptry
+name: validate-codecov-config
+
+on:
+  pull_request:
+    paths: [codecov.yml]
+  push:
+    branches: [main]
+
+jobs:
+  validate-codecov-config:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate codecov configuration
+        run: curl -sSL --fail-with-body --data-binary @codecov.yml https://codecov.io/validate
