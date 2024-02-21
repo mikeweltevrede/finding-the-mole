@@ -2,12 +2,8 @@
 name: ci-main
 
 on:
-  # TODO: Switch to main/closed
   push:
-    branches: ["**"]
-#  pull_request:
-#    branches: [main]
-#    types: [closed]
+    branches: [main]
 
 jobs:
   quality:
