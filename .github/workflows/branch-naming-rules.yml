@@ -1,10 +1,7 @@
 name: branch-naming-rules
 
 on:
-  create:
-    branches: ["**"]
-  pull_request:
-    types: [opened]
+  create
 
 jobs:
   branch-naming-rules:
