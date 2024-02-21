@@ -266,6 +266,10 @@ There was no opportunity to earn money in this task. Moreover, there was no uneq
 way. As such, I omit this task from the analysis.
 
 ## Episode 7
+The ranking of the Baseline Model is:
+1. Anna, Fons: 26.09% (6 points)
+2. Kees: 21.74% (5 points)
+3. Rian, Rosario: 13.04% (3 points)
 
 ### Task 1
 The participants had to do several small tasks related to music, e.g. linking musical terms to their meaning and
