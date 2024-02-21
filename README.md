@@ -21,10 +21,8 @@ I would love to receive your contributions to this learning project. You can con
    pip install poetry
    ```
 
-2. It is recommended to install the virtual environment in the repo itself:
-   ```
-   poetry config virtualenvs.in-project true
-   ```
+2. It is recommended to install the virtual environment in the repo itself. This is done automatically through the
+   [poetry.toml](./poetry.toml) file.
 
 3. Navigate to the directory and install the project:
    ```
@@ -38,7 +36,7 @@ I would love to receive your contributions to this learning project. You can con
 
 5. Run the tests to see if the setup process was successful:
    ```
-   poetry run pytest
+   poetry run pytest tests/unit finding_the_mole --doctest-modules
    ```
 
 ### Branch naming conventions
@@ -120,6 +118,11 @@ only annoying thing about this is that you have to either:
    lock file.
 
 To be fair, this problem also arises with regular `requirements.txt` files, so it is not an issue for me.
+
+#### poetry.toml file
+I learned that there is a `poetry.toml` file which can contain configurations for poetry specifically when it creates
+a project. This is nice since it removes the personal responsibility to set certain poetry settings, most importantly
+to create the virtual environment in the project folder.
 
 ### Polars library
 [**Polars website**](https://www.pola.rs/)
