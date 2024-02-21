@@ -2,7 +2,7 @@ name: ci-main
 
 on:
   push:
-    branches: [main]
+    branches: ["**"]
 
 jobs:
   quality-checks:
