@@ -1,7 +1,8 @@
 name: branch-naming-rules
 
 on:
-  pull_request
+  pull_request:
+    types: [opened,synchronize,reopened]
 
 jobs:
   branch-naming-rules:
