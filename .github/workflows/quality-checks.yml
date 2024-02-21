@@ -10,7 +10,7 @@ on:
         description: 'Provide pre-commit hooks to skip as a comma-separated list, e.g. SKIP=no-commit-to-branch,deptry'
 
 jobs:
-  quality:
+  quality-checks:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
