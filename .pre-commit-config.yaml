@@ -17,6 +17,7 @@ repos:
       - id: name-tests-test
         exclude: ^tests/utils/
       - id: no-commit-to-branch
+        stages: [pre-commit]
       - id: trailing-whitespace
 
   - repo: https://github.com/fpgmaas/deptry
