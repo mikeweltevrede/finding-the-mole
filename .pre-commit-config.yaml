@@ -19,7 +19,13 @@ repos:
       - id: no-commit-to-branch
       - id: trailing-whitespace
 
-  - repo: https://github.com/fpgmaas/deptry.git
+  - repo: https://github.com/fpgmaas/deptry
     rev: "0.12.0"
     hooks:
       - id: deptry
+        name: deptry
+        description: deptry is a command line tool to check for issues with dependencies in a Python project, such as unused or missing dependencies.
+        entry: deptry .
+        language: system
+        always_run: true
+        pass_filenames: false
