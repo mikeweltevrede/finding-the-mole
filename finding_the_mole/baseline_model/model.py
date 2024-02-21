@@ -55,6 +55,6 @@ class BaselineModel(Model):
             raise RuntimeError("Model has not been fitted")
 
         data = self.counts.with_columns(
-            pl.when(pl.col(self.COUNT_COL).is_infinite()).then(0).otherwise(pl.col(self.COUNT_COL)).keep_name()
+            pl.when(pl.col(self.COUNT_COL).is_infinite()).then(0).otherwise(pl.col(self.COUNT_COL)).name.keep()
         )
         return np.array(data[self.COUNT_COL] / sum(data[self.COUNT_COL]))
