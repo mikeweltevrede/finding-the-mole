@@ -1,0 +1,28 @@
+# Inspiration: https://github.com/fpgmaas/deptry
+name: quality_checks
+
+on:
+  workflow_call:
+    inputs:
+      pre-commit-skip:
+        type: string
+        default: ''
+        description: 'Provide pre-commit hooks to skip as a comma-separated list, e.g. SKIP=no-commit-to-branch,deptry'
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-poetry-env
+
+      - name: Run pre-commit
+        run: ${{ inputs.pre-commit-skip }} poetry run pre-commit run --all-files --show-diff-on-failure

@@ -1,4 +1,3 @@
-# Inspiration: https://github.com/fpgmaas/deptry
 name: ci-main
 
 on:
@@ -6,38 +5,12 @@ on:
     branches: [main]
 
 jobs:
-  quality:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out
-        uses: actions/checkout@v4
-
-      - uses: actions/cache@v4
-        with:
-          path: ~/.cache/pre-commit
-          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
-
-      - name: Set up the environment
-        uses: ./.github/actions/setup-poetry-env
-
-      - name: Run pre-commit
-        run: SKIP=no-commit-to-branch poetry run pre-commit run -a --show-diff-on-failure
+  quality-checks:
+    uses: ./.github/workflows/quality-checks.yaml
+    with:
+      pre-commit-skip: 'SKIP=no-commit-to-branch'
 
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up the environment
-        uses: ./.github/actions/setup-poetry-env
-        with:
-          python-version: '3.12'
-
-      - name: Run tests
-        run: poetry run pytest tests/unit/ finding_the_mole --doctest-modules --cov=finding_the_mole --cov-fail-under=80 --cov-report=xml --cov-report=term-missing
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    uses: ./.github/workflows/unit-test.yaml
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
