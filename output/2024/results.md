@@ -354,3 +354,60 @@ way that they could have control over. As such, I omit this task from the analys
 ### Task 3
 There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
 in the current implementation that there is an equal number of tasks in each episode.
+
+## Episode 9
+The ranking of the Baseline Model is:
+1. Fons: 42.11% (8 points)
+2. Anna: 31.58% (6 points)
+3. Rosario: 26.32% (5 points)
+
+Because these are the final three participants, I wanted to add my personal opinion here. Before this episode, I was
+doubting whether Anna or Kees was the Mole. Since episode 1, I have generally suspected Anna the most. It was
+interesting to see that she also was on top of the results of the Baseline Model for a long time. It is also intriguing
+that Fons is ranked so highly; I do not suspect him at all. Although he was in the "Mole group" the most often, I am not
+sure if I saw him acting suspiciously within those groups. I have also not really suspected Rosario much. The first task
+of this episode changed this a bit, but I am still more confident with Anna as the Mole. Nonetheless, this is the least
+confident that I have been about my choice for the Mole in a long time. It will be exciting to see who actually is the
+Mole and what they did!
+
+### Task 1
+The participants were asked to select a pouch which would contain a certain amount of money. Then, they had to follow a
+zipline course. They had three stops where a participant had to solve a mathematical puzzle (increasing in difficulty).
+The Mole had done these before. If the participant failed to complete the puzzle within the time set by the Mole, they
+would not continue the course and the money in their pouch would be forfeit. Next to the puzzles, the participants had
+to memorize the Mayan names for various body parts. At the end of the course, the participants who remained, had to name
+one of these body parts and, if it was correct, they would earn the money in their pouch.
+
+During the course, Kees was eliminated at the first puzzle. Anna successfully completed the second puzzle, and Rosario
+was beaten at the third puzzle. Thus, Anna and Fons reached the end of the course. Both of them answered correctly and
+earned the money in their pouch: 250 euros for Fons and 750 euros for Anna. In total, the participants could earn 4,000
+euros, which means that Kees and Rosario had 3,000 euros in their collective pouches (I assume 1,000 and 2,000 euros).
+
+There are several actions the Mole could have taken. When selecting the pouches, it was quickly suggested to just take
+the one in front of you, which was agreed upon easily. The Mole would know what amount of money was in each pouch. As
+such, they could complete the course knowing that they did not have much money themselves. More likely, however, I think
+they would want to be eliminated. I am assigning both Kees and Rosario to this group, but I want to highlight one point
+that makes Rosario a bit suspicious. He and Fons arrived at the second puzzle before Anna. Rosario was very adamant that
+Anna had to do the second puzzle. He claims this is because he wanted to test Anna because he suspected her, and he
+thought that she should easily be able to do this easier puzzle. If she failed, that would indicate Mole-like behaviour.
+However, I think that this also gives himself an opportunity to fail at the third puzzle. If he is the Mole, he would
+know that he had 1,000 or 2,000 euros, and he did not want to add this to the pot.
+
+### Task 2
+There were two groups: Fons and Kees would dive underwater to listen for names being called out, e.g. San Carlos and
+Santa Monica. Anna and Rosario were stationed at two platforms with many keys, tagged with these names. They had to
+set aside the names that were called out by Fons and Kees. The keys that remained would fit on some locked chests which
+would contain money.
+
+I think that the Mole could be in either group. It was not shown how the groups were selected (was it decided themselves
+and was someone very interested in one group or the other?) so we cannot decide anything there. For the divers: the Mole
+can easily shout out names for which they know they will fit on the locks. The two swimmers were not checking each
+other's audio, as far as we could tell. For the two selecting the keys, they could set aside the wrong names or actually
+throw the keys with the correct names in the water. For the former, the other person did check their keys at some point
+and the group also collectively looked at the remaining keys on their way to the chests. Then, the only action for the
+Mole would be to throw the correct keys in the water.  All in all, the more logical and easy explanation is if the Mole
+was a diver, though.
+
+### Task 3
+There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
+in the current implementation that there is an equal number of tasks in each episode.
