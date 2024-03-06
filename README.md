@@ -1,5 +1,5 @@
 # Finding the Mole
-[![build](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci.yml/badge.svg)](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci.yml)
+[![build](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci-main.yml/badge.svg)](https://github.com/mikeweltevrede/finding-the-mole/actions/workflows/ci-main.yml)
 [![codecov](https://codecov.io/gh/mikeweltevrede/finding-the-mole/graph/badge.svg?token=9VU08WT5PP)](https://codecov.io/gh/mikeweltevrede/finding-the-mole)
 
 Wie Is De Mol ("Who is the Mole") is a Dutch television show that has seen consistent popularity. It is also being
