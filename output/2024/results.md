@@ -361,6 +361,15 @@ The ranking of the Baseline Model is:
 2. Anna: 31.58% (6 points)
 3. Rosario: 26.32% (5 points)
 
+Because these are the final three participants, I wanted to add my personal opinion here. Before this episode, I was
+doubting whether Anna or Kees was the Mole. Since episode 1, I have generally suspected Anna the most. It was
+interesting to see that she also was on top of the results of the Baseline Model for a long time. It is also intriguing
+that Fons is ranked so highly; I do not suspect him at all. Although he was in the "Mole group" the most often, I am not
+sure if I saw him acting suspiciously within those groups. I have also not really suspected Rosario much. The first task
+of this episode changed this a bit, but I am still more confident with Anna as the Mole. Nonetheless, this is the least
+confident that I have been about my choice for the Mole in a long time. It will be exciting to see who actually is the
+Mole and what they did!
+
 ### Task 1
 The participants were asked to select a pouch which would contain a certain amount of money. Then, they had to follow a
 zipline course. They had three stops where a participant had to solve a mathematical puzzle (increasing in difficulty).
