@@ -319,3 +319,38 @@ take the risk. If you do not look, and you bid at least 500 euros, you already h
 money from the pot that if you did look; either you will remove this amount or someone who bid higher. If it turns out
 that the person that was suspected from having looked actually did not look, this was only a small gamble to make for
 the Mole. As such, I suspect the Mole to not have looked.
+
+## Episode 8
+The ranking of the Baseline Model is:
+1. Fons: 31.82% (7 points)
+2. Anna: 27.27% (6 points)
+3. Kees: 22.73% (5 points)
+4. Rosario: 18.18% (4 points)
+
+### Task 1
+The participants were asked to rank their fellow participants based on how much they trust them. The person who was
+collectively trusted the most was given a special role (more on that later); this was Rosario. The other four had to
+move between locations where they had to build a house of cards. If they completed one layer, they would earn money
+(different amounts per location). If they completed two or three layers, they would get one or two jokers, respectively.
+When they collected their reward, they would go to the final location, where Rosario would be waiting for them. They had
+to convince Rosario that they had won money. He could choose whether to eliminate them or not. If he eliminated the
+participant, and they had money, that money would be lost. However, if they had jokers, Rosario would steal them.
+
+The Mole could, of course, not choose if they would receive the special role that Rosario received. Even though it is
+highly unlikely that the Mole is the most trusted participant, it is still an option. As such, I will determine that
+role to be a Mole role because the Mole would have no control. For the other group, I suspect the Mole had enough time
+before the recordings to practise making a house of cards. As such, I assume that the Mole would want to get jokers to
+avoid creating the opportunity that money would be earned. Only Fons went for the joker; the rest tried to go for jokers
+but failed (claiming it was too difficult or there was time pressure).
+
+In conclusion: I assign Fons and Rosario to the Mole group for this task.
+
+### Task 2
+Because Fons was trusted the least in the last task, he was given the special role in this task. The other participants
+had to magnet fish words that Fons would have to use in a sentence (some restrictions applied). Although there are
+definitely actions the Mole could take in this task, there was no unequal division of groups in some sort of way in a
+way that they could have control over. As such, I omit this task from the analysis.
+
+### Task 3
+There were only two tasks in this episode. I encoded the data with "O" for the 3rd task due to the assumption being made
+in the current implementation that there is an equal number of tasks in each episode.
