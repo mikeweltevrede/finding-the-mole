@@ -321,14 +321,11 @@ that the person that was suspected from having looked actually did not look, thi
 the Mole. As such, I suspect the Mole to not have looked.
 
 ## Episode 8
-Opdr 1: lasergame + vertrouwen
-- Joker: Fons
-- Geld: Kees, Anna, Rian
-- Sor apart
-
-Opdr 2: zinnen maken
-- Zinne maken: Fons
-- Woorden verzamelen: Rian+Sor, Kees+Anna
+The ranking of the Baseline Model is:
+1. Fons: 31.82% (7 points)
+2. Anna: 27.27% (6 points)
+3. Kees: 22.73% (5 points)
+4. Rosario: 18.18% (4 points)
 
 ### Task 1
 The participants were asked to rank their fellow participants based on how much they trust them. The person who was
