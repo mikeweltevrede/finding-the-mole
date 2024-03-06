@@ -356,6 +356,10 @@ There were only two tasks in this episode. I encoded the data with "O" for the 3
 in the current implementation that there is an equal number of tasks in each episode.
 
 ## Episode 9
+The ranking of the Baseline Model is:
+1. Fons: 42.11% (8 points)
+2. Anna: 31.58% (6 points)
+3. Rosario: 26.32% (5 points)
 
 ### Task 1
 The participants were asked to select a pouch which would contain a certain amount of money. Then, they had to follow a
