@@ -1,6 +1,6 @@
 read_path: data
-data_file_name: "WIDM - 2024.csv"
-write_path: output/2024
+data_file_name: belgium2024.csv
+write_path: output/belgium/2024
 write_output: true
 
 index_col: Name
