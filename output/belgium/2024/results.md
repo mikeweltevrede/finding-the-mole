@@ -5,6 +5,12 @@ analyses and why I made certain choices.
 Note that this document will contain spoilers about the episodes' tasks and who was eliminated.
 
 ## Episode 1
+The ranking of the Baseline Model is:
+1. Bernard: 23.08% (3 points)
+2. Charlotte, Stéphanie: 15.38% (2 points)
+3. Coco, Karolien, Lynn, Michaël, Philippe, Senne: 7.69% (1 point)
+4. Gillian: 0.00% (0 points)
+
 ### Task 1
 #### Task description
 In the first task of the first episode, the participants are divided into three groups on or around a ship:
