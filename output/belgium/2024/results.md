@@ -58,9 +58,32 @@ tags, the participants had to knock over a peg in that colour to eliminate that 
 the olive tree farm).
 
 #### My conclusion
-I would think that the Mole wanted to be a **dancer**. It was seemingly difficult to knock over the pegs consistently since
-you had to do it mid-dance. It happened 2 out of 3 times that multiple pegs were knocked over at the same time when they
-only meant to knock over one. Moreover, many of the words on the tags looked like colours, so you could easily claim you
-saw two occurrences of a certain colour; the other person could not check it. However, at the olive tree farm, you could
-try to convince others to put the olives in the wrong bins and put olives in the wrong bin yourself, but it seemed like
-it was easy to check each other.
+I would think that the Mole wanted to be a **dancer**. It was seemingly difficult to knock over the pegs consistently
+since you had to do it mid-dance. It happened 2 out of 3 times that multiple pegs were knocked over at the same time
+when they only meant to knock over one. Moreover, many of the words on the tags looked like colours, so you could easily
+claim you saw two occurrences of a certain colour; the other person could not check it. However, at the olive tree farm,
+you could try to convince others to put the olives in the wrong bins and put olives in the wrong bin yourself, but it
+seemed like it was easy to check each other.
+
+### Task 3
+#### Task description
+It was revealed that the "question marks" picked up in Task 1 were actually "doublers". These could be played before a
+task to double the amount of money that could be won in that task. However, one person had to be selected as the keeper
+of those doublers. That person would select when to play the doublers, but if that person would be eliminated from the
+game, the doublers would also be lost. In return for this "risk", the keeper would be offered an exemption from this
+week's elimination.
+
+The participants watched recordings of their own responses when they heard they were selected to be on the Mole. They
+could press a button to stop the recording. The three participants who pressed most quickly, were candidates to become
+the keeper. These turned out to be Bernard, Karolien, and Stéphanie.
+
+In the next stage, all participants came together. They were told that they had multiple rounds to vote in order to
+find and eliminate the candidates. Last candidate standing would become the keeper. For each time they voted for a
+non-candidate though (the group did not know who they were), the amount of money to be won in this task was halved. They
+started with 4,000 Euros. In the end, the group ended up with 2,000 Euros and Bernard became the keeper and earned the
+exemption for episode 1.
+
+#### My conclusion
+It makes sense for the Mole to want to be the keeper. They have prior knowledge of the tasks and know which ones are
+difficult. They could play the doublers on these tasks. The Mole could also not play the doublers at all or even lose
+(some of) them.
