@@ -41,3 +41,26 @@ is more likely and the group you would want to be in is the group where you woul
 I think this is only possible in **group 1**, where you could suggest correct answers if you think others might be
 completing their tasks soon. Once you are on deck and have access to the button, you can suggest to press it to
 eliminate others.
+
+### Task 2
+#### Task description
+The participants were divided into two groups:
+1. Olive pickers: Gillian, Karolien, Senne, Stéphanie
+2. Dancers: Bernard, Charlotte, Coco, Lynn, Michaël, Philippe
+
+The olive pickers had to, obviously, pick olives. They would have to put these in one of 6 bins. Each bin represented
+an answer to a question about their fellow participants - e.g. what is Michaël afraid of? The more olives were put in
+the correct bins, the more money they would earn (1,000 Euros per kilo).
+
+In the other group, the dancers had to do a regional dance where they were connected with lints to a pole, together with
+local dancers. The local dancers would be wearing tags with words on them. If a colour would be repeated amongst those
+tags, the participants had to knock over a peg in that colour to eliminate that bin (it would also be knocked over at
+the olive tree farm).
+
+#### My conclusion
+I would think that the Mole wanted to be a **dancer**. It was seemingly difficult to knock over the pegs consistently since
+you had to do it mid-dance. It happened 2 out of 3 times that multiple pegs were knocked over at the same time when they
+only meant to knock over one. Moreover, many of the words on the tags looked like colours, so you could easily claim you
+saw two occurrences of a certain colour; the other person could not check it. However, at the olive tree farm, you could
+try to convince others to put the olives in the wrong bins and put olives in the wrong bin yourself, but it seemed like
+it was easy to check each other.
