@@ -93,3 +93,74 @@ exemption for episode 1.
 It makes sense for the Mole to want to be the keeper. They have prior knowledge of the tasks and know which ones are
 difficult. They could play the doublers on these tasks. The Mole could also not play the doublers at all or even lose
 (some of) them.
+
+## Episode 2
+### Task 1
+#### Task description
+The participants were divided into two groups:
+1. Ice cream collectors: Charlotte, Karolien, Michaël, Coco, Stéphanie
+2. Car collectors: Bernard, Lynn, Philippe, Senne
+
+The goal of the task was to deliver ice cream cones to the host of the show, who was at a beach somewhere far from the
+task location; as such, they needed to go by car. The ice creams had to be of a certain height when they arrived and
+they only had a limited amount of time.
+
+The ice cream collectors had to do minigames to earn scoops of ice cream. The car collectors had to retrieve the cars by
+completing a sliding puzzle with actual cars. They collected the keys to the cars by guessing if certain car brands were
+Italian or not. For every wrong guess, some play time would be deducted. Once the cars were freed, they then had to pick
+up the former and drive to the final location.
+
+#### My conclusion
+There is no question that the Mole wanted to collect the cars. You get complete control over the play time, which you
+can sabotage by answering wrong on the car brands (which is easy due to the hectic nature of the game) but also by
+obstructing the sliding puzzle (stalling or just putting cars in wrong locations). Moreover, you would also have a good
+chance of driving the car. This allows you to drive more recklessly, causing ice creams to spill, or to drive a bit more
+slowly when possible.
+
+### Task 2
+#### Task description
+The participants were divided into duos, determined by which seat they took at the breakfast table. There was a special
+role for Senne, who arrived at the table last.
+
+It turns out Senne was locked in on the top floor of an old castle. The other participants entered the castle and had to
+complete tasks to try to reach and free him within a certain time. The catch was that they had to keep the candle on
+their helmet burning; this could be extinguished by dropping water (first room) or fans (second room) throughout the
+castle. In the second room, Senne could help by temporarily disabling the fans (the participants could communicate with
+Senne through a walkie-talkie). Once the participants reached Senne, which turned out to be Philippe and Karolien, they
+saw a board telling them that certain people had a chance of gaining a personal advantage. They could reorder these
+using a provided hammer in Senne's cell, i.e. he had to give it to Karolien and Philippe.
+
+#### My conclusion
+The Mole could kind of choose where they wanted to be: locked up on the top floor or in the other group; all they had to
+do is get up early or late. I can see an argument for both sides with perhaps a slight preference for Senne's role
+because you have control over the fans in the second room (and an advantage for the third task, as I will explain in a
+bit). On the other hand, in the other group you can stall the time and actively obstruct the progress in the second room
+by discouraging talking to Senne.
+
+In the third task, it is optimal for the Mole to be placed as high on the board as possible (see the task's
+explanation). Being in the locked room, you do not have control over where you go, but you can kind of guarantee that
+you go at most second. The participants that free you will put themselves at the top position, of course, and it will be
+easy to make them sympathize with you and put you next. You can even bargain with them for this and stall time by not
+giving the hammer.
+
+As such, I would give a very slight preference for the Mole to want to be in Senne's position.
+
+### Task 3
+#### Task description
+Order (as decided in task 2):
+1. Karolien, Philippe
+2. Michaël, Senne
+3. Charlotte, Stéphanie
+4. Bernard, Coco
+5. Lynn
+
+In the middle of the night, the participants would be awoken in the provided order. They were given the option to open
+"Pandora's Box", which would contain 8 jokers. They were cryptically instructed beforehand that opening the box would
+have grave consequences. If they would not open the box at all, they would earn money. It turned out that these
+consequences were that the group pot would quickly start decreasing until all 9 participants were present at the box
+and placed their hands on the correct location on a screen. In the end, the box was opened by Michaël and Senne.
+
+#### My conclusion
+You can see why the Mole would want to guarantee that the box would be opened, although it is also fair to assume that
+the box would be opened anyway. However, since the order was decided in the task before by Karolien, Philippe, and
+Senne, and I also took this into account in determining the Mole group in task 2, I do not take this task into account.
