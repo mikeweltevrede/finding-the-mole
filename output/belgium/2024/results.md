@@ -95,6 +95,12 @@ difficult. They could play the doublers on these tasks. The Mole could also not 
 (some of) them.
 
 ## Episode 2
+The ranking of the Baseline Model is:
+1. Bernard: 22.22% (4 points)
+2. Senne: 16.67% (3 points)
+3. Charlotte, Lynn, Philippe, Stéphanie: 11.11% (2 points)
+4. Coco, Karolien, Michaël: 5.56% (1 point)
+
 ### Task 1
 #### Task description
 The participants were divided into two groups:
