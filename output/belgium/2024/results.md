@@ -170,3 +170,59 @@ and placed their hands on the correct location on a screen. In the end, the box 
 You can see why the Mole would want to guarantee that the box would be opened, although it is also fair to assume that
 the box would be opened anyway. However, since the order was decided in the task before by Karolien, Philippe, and
 Senne, and I also took this into account in determining the Mole group in task 2, I do not take this task into account.
+
+# Episode 3
+The ranking of the Baseline Model is:
+1. Bernard: 26.92% (7 points)
+2. Charlotte: 15.38% (4 points)
+3. Michaël, Philippe, Senne: 11.54% (3 points)
+4. Coco, Lynn, Stéphanie: 7.69% (2 points)
+
+### Task 1
+#### Task description
+The participants were divided into three groups:
+1. Interception: Bernard, Coco
+2. Money drop locations: Charlotte, Senne
+3. Mafia member traits: Lynn, Michaël, Philippe, Stéphanie
+
+The goal of the task was to intercept money drops by the Sicilian mafia. Group 2 would receive phone calls which they
+had to answer them when the ringtone was an Italian song, upon which they would hear the location where the money would
+be dropped. They would communicate this to Group 1, who would try to find the bag of money. In the meantime, Group 3
+would have to complete some subtasks to get hints about the traits of the mafia member. The group would earn the money
+that they intercepted if and only if they could point to the correct mafia member at the end.
+
+#### My conclusion
+I think that the Mole would prefer to be in Group 1. It was a difficult village to navigate, and they could easily stall
+or sow confusion. In Group 2, you could communicate the wrong location but the other person can easily check you. In
+Group 3, you also have some control over the success of the task, although it turned out to be quite easy to get the
+hints for the mafia member.
+
+### Task 2
+#### Task description
+Four participants were chosen by the Mole to have to remain silent during the next task: Bernard, Charlotte, Coco, and
+Michaël. If they succeeded, they would earn money for each person that did not speak. Besides this exercise, the group
+had to complete three subtasks, for each of these you would earn money.
+
+#### My conclusion
+The Mole could, of course, which group they wanted to be in. If they submitted themselves to not speak, they could
+guarantee control over the amount of money that they would be able to earn. They could also be leading in the possible
+success of the subtasks because they had to communicate their goal with the rest. If they would not be silenced, they
+could only participate in the tasks and try to make them fail. This proved a bit tricky, so I think the Mole would want
+to silence themselves.
+
+### Task 3
+#### Task description
+The participants were divided into two groups:
+1. Piaggio drivers: Bernard, Charlotte, Michaël, Philippe
+2. The others: Coco, Lynn, Senne, Stéphanie
+
+Group 1 held a duel where they took turns to name a kind of pasta. The first one to fail to name a correct type, would
+lose. The cost of losing would be that they would each gain a "negative joker", meaning that a correct answer on the
+elimination test would be counted as incorrect. Group 2 then had to interview the Piaggio drivers and determine who
+lost. If they succeeded, they would earn money for the group pot. If they failed to do so, everyone except for the
+losers of the duel would gain the "negative joker" and no money would be earned.
+
+#### My conclusion
+The Mole would probably want to be driving a Piaggio. This would give them control over the task, and they could adapt
+their strategy in the interview based on whether they won the duel (they would want the group to point to the winners,
+of course).
