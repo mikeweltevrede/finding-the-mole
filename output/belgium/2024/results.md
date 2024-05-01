@@ -226,3 +226,69 @@ losers of the duel would gain the "negative joker" and no money would be earned.
 The Mole would probably want to be driving a Piaggio. This would give them control over the task, and they could adapt
 their strategy in the interview based on whether they won the duel (they would want the group to point to the winners,
 of course).
+
+# Episode 4
+The ranking of the Baseline Model is:
+1. Bernard: 30.00% (9 points)
+2. Charlotte: 20.00% (6 points)
+3. Senne: 13.33% (4 points)
+4. Coco, Michaël, Stéphanie: 10.00% (3 points)
+5. Lynn: 6.67% (2 points)
+
+### Task 1
+#### Task description
+Groups:
+1. Plumbers: Lynn, Michaël, Stéphanie
+2. Racers: Bernard, Charlotte, Coco, Senne
+
+The participants jumped into the world of Super Mario! The racers would compete against the fastest kart racer of Italy.
+To help them, the plumbers traversed a side-scrolling AR video game like Mario to collect bananas (which would slow
+their opponent down when thrown into a basket at the end of a round) and speed-power ups (which would speed up one
+racer, decided by the plumbers). The task would be successful for each racer that could stay ahead of their opponent
+for 15 rounds.
+
+#### My conclusion
+The Mole would definitely want to be a racer. They have control over their own finishing time (if at all), as well as
+whether they would hit or miss the banana throws in the basket. It also turned out that Senne stopped when he still
+had one more round to go - the plumbers had the task to keep track of how many rounds they already went. That also
+provides a reason for the Mole to want to be a plumber, but I think they would have less control over the task.
+
+### Task 2
+#### Task description
+Groups:
+1. Dough: Lynn, Senne
+2. Toppings: Coco, Michaël
+3. Delivery: Bernard, Charlotte, Stéphanie
+
+The next task was pizza-themed. The participants in group 1 had to learn how to create pizza dough and then had to throw
+it from one building to another. Group 2 had to taste several pizzas blindfolded and then had to identify the one
+ingredient shared between the two pizzas. The last group had to carry large stacks of pizza boxes down a tough hiking
+trail, taking care not to drop them on the floor. Based on the results, each individual group could send a number of
+people to the final part of the task. In that final task, they had to carry a pizza to the other side of the town while
+dodging the pineapple that people were trying to throw onto their pizza. The finals were played by Lynn, Michaël, Senne,
+and Stéphanie, of which only Michaël's pizza survived.
+
+#### My conclusion
+Of course, the Mole would prefer to make the final game themselves but there is no way to guarantee that they would
+convince their subtask partner(s) that they should go (if not all of them could go to the final game). As such, I think
+we have to determine the Mole group as one of the subtask groups, namely the one where it would likely be easiest to
+send as few people as possible to the final game. I believe that this is the delivery group. The bar was set pretty
+high and, as Mole, you can easily drop a few boxes. In the toppings group, identifying wrong ingredients can be quite
+difficult as tastes are usually pretty pronounced so you need a good alternative. I think the only group that the Mole
+would not want to be in, is the dough group. Because I want to pick just one group, I choose the delivery group.
+
+### Task 3
+#### Task description
+The participants were told (by the Mole) that the person who would be eliminated that episode could strike a deal with
+them. The Mole would correct at most 4 wrong answers on their test. Of course, the more answers corrected, the more
+money this would cost. Before the elimination, the participants were called to see if they would be eliminated at that
+point. The participants then had to try to identify the person who would be eliminated, thereby invalidating their deal
+with the Mole.
+
+#### My conclusion
+The Mole can only sabotage this task by trying to convince everyone to let them correct as many answers as possible.
+Additionally, they might know who would be eliminated (they indicated in their talk with the participants that they
+saw the test scores) so that their strategy would be to steer the group away from the eliminated person so that the
+money from their corrected answers would be deducted from the group pot.
+
+As such, I omit this task. There is no way to identify a Mole group for this task.
