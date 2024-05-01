@@ -292,3 +292,55 @@ saw the test scores) so that their strategy would be to steer the group away fro
 money from their corrected answers would be deducted from the group pot.
 
 As such, I omit this task. There is no way to identify a Mole group for this task.
+
+# Episode 5
+The ranking of the Baseline Model is:
+1. Bernard: 31.03% (9 points)
+2. Charlotte: 20.69% (6 points)
+3. Senne: 17.24% (5 points)
+4. Michaël: 13.79% (4 points)
+5. Stéphanie: 10.34% (3 points)
+6. Lynn: 6.90% (2 points)
+
+### Task 1
+#### Task description
+Groups:
+1. Hercules: Michaël, Senne
+2. Sisyphus: Bernard, Stéphanie
+3. Danaides: Charlotte, Lynn
+
+The participants had to traverse a course in the theme of Greek mythology. Group 1 had to travel to the end of the
+course. Someone named Hercules was there, lifting two pillars. If these pillars would fall, the task would fail.
+Group 1 had to take over lifting the pillars after 30 minutes, after which Hercules would also put extra weights on the
+pillars every few minutes. In the meantime, group 1 had to push a heavy ball up a hill where they had to answer three
+questions, the answers to which were printed onto the ball. Every time that they answered incorrectly, they had to carry
+the ball all the way to the beginning of the course and start over. Group 2 had to fill a barrel with water, but the
+barrel had holes in it that they had to close with wooden pegs.
+
+#### My conclusion
+The Hercules group had full control over the success of the task. No matter how much money they had gathered, if they
+would drop the pillars before everyone reached the end of the course, no money would be won. As such, I think the
+Mole would want to be in group 1.
+
+### Task 2
+#### Task description
+The mothers of the participants were visiting. The participants first had to guess which spaghetti bolognese was made
+by their own mom (or sister in the case of Stéphanie). If they would all guess correctly, they would earn money.
+
+#### My conclusion
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
+
+### Task 3
+#### Task description
+The participants and their mothers had to build a tower out of blocks. After this, a small earthquake would be
+simulated. The lowest tower would be eliminated.  This happened for three rounds. At the end of each round, a
+multiple choice question about the participants would be asked. If the participants answered the same as their
+mother/sister, they would earn money and some additional blocks for their tower. When three participants remained,
+they played the final game. The participants were offered a choice between one joker or a luxurious weekend away
+with their mother. If their mother/sister could correctly guess which choice they made, the participant would win
+whatever they chose. If all choices were correctly identified, the money earned earlier would be added to the pot.
+
+#### My conclusion
+Although there are definitely actions the Mole could take in this task, there was no unequal division of groups in some
+sort of way. As such, I omit this task from the analysis.
